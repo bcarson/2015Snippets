@@ -1,0 +1,98 @@
+﻿<style type="text/css">
+    .frame ul.framecomp {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-size: 50px;
+    }
+
+        .frame ul.framecomp li.framecomp {
+            float: left;
+            /*width: 227px;*/
+            height: 100%;
+            margin: 0 1px 0 0;
+            padding: 0;
+            /*background: #333;*/
+            color: #ddd;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    .scrollbar .handle {
+        width: 100px;
+        height: 100%;
+        background: #808080;
+        cursor: pointer;
+    }
+
+    .scrollbar {
+        margin: 0 0 1em 0;
+        height: 2px;
+        background: #ccc;
+        line-height: 0;
+    }
+
+    .nodelink {
+        margin-left: 83px;
+        margin-top: -15px;
+        background-color: #ccc;
+        padding-left: 2px;
+        cursor: pointer;
+        height: 20px;
+        width: 15px;
+        border-top-left-radius: 5px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;        
+    }
+
+    .nodelink:hover {
+        background-color: #ddd;
+    }
+
+    .scrollbar .handle .mousearea {
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        width: 30px;
+        height: 10px;
+        border-radius: 5px;
+        background-color: #ccc;
+    }
+
+    .scrollbar .handle .mousearea:hover {
+        background-color: #ddd;
+    }
+</style>
+<div ng-controller="childNodesController" style="width: 100%">
+    <div portlet-container on-load="onLoad" on-load-complete="onLoadComplete" style="display: none;" ng-transclude>
+        <div ng-show="loaded && !nodes.length">There is no additional information to display.</div>        
+
+        <div class="wrap" style="padding: 5px;" ng-repeat="type in nodeTypes" repeater-completed-callback="onLoadComplete" is-last-item="$last" oms-repeater>
+            <span style="padding-bottom: 5px; font-size: 16px; color: #808080;" ng-bind="type"></span><br />            
+            <div class="scrollbar" style="margin-top: 10px;">
+                <div class="handle">
+                    <div class="mousearea"></div>
+                </div>
+            </div>
+            <div class="frame">
+                <ul class="framecomp">
+                    <li class="framecomp" ng-repeat="node in nodes | filter:filterByType(type)">
+                        <div ng-style="{backgroundColor: node.isSelected ? 'rgb(0, 114, 198)' : '#78cdff'}" style="width: 100px; height: 90px; border-style: solid; border-width: 1px; border-color: #808080;">
+                            <div ng-click="selectNode(node);">
+                                <div style="font-size: 12px; height: 30px; padding: 5px;" ng-style="{color: node.isSelected ? '#fff' : '#444'}" ng-bind="node.Title"></div>
+                                <div style="background-repeat: no-repeat; background-size: 45px 45px; background-position: center; height: 40px; width: 100px; cursor: pointer; " ng-style="{ backgroundImage: 'url(' + node.ImageURL + ')' }"></div>
+                                <div style="height: 5px; width: 100px;"></div>
+                            </div>
+                            <div ng-show="node.LinkUrl" ng-click="openLink(node.LinkUrl);" class="nodelink" ng-style="{backgroundImage: 'url(' + siteBasePath + '/Style%20Library/Images/share.png)'}"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <br />
+        </div>
+
+        <div ng-show="!hasDependents && nodes.length">There is no additional information to display.</div>
+    </div>
+</div>

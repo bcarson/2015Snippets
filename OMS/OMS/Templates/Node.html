@@ -1,0 +1,142 @@
+﻿<style type="text/css">
+    .frame ul.framecomp {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-size: 50px;
+    }
+
+        .frame ul.framecomp li.framecomp {
+            float: left;
+            /*width: 227px;*/
+            height: 100%;
+            margin: 0 1px 0 0;
+            padding: 0;
+            /*background: #333;*/
+            color: #ddd;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    .scrollbar .handle {
+        width: 100px;
+        height: 100%;
+        background: #808080;
+        cursor: pointer;
+    }
+
+    .scrollbar {
+        margin: 0 0 1em 0;
+        height: 2px;
+        background: #ccc;
+        line-height: 0;
+    }
+
+        .scrollbar .handle .mousearea {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            width: 30px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #ccc;
+        }
+
+            .scrollbar .handle .mousearea:hover {
+                background-color: #ddd;
+            }
+
+    .cop-tile.tactive {
+        background-color: rgb(0, 114, 198);
+    }
+
+    .cop-tile {
+        background-color: #ccc;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        height: 53px;
+        width: 150px;
+        margin: 0 10px 10px 0;
+        float: left;
+    }
+
+        .cop-tile ul {
+            list-style-type: none;
+            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            width: 150px;
+            height: 53px;
+            top: 25px;
+            margin: 0;
+            padding: 1px 2px 2px;
+            color: #fff;
+            font: 13px 'Segoe UI', Segoe, Tahoma, Helvetica, Arial, sans-serif;
+            -webkit-transition: top .5s;
+            -moz-transition: top .5s;
+            -o-transition: top .5s;
+            -ms-transition: top .5s;
+            transition: top .5s;
+        }
+
+        .cop-tile a {
+            height: 53px;
+            width: 150px;
+            display: block;
+            position: absolute;
+        }
+
+        .cop-tile li {
+            height: 25px;
+        }
+
+            .cop-tile li.cop-tile-title {
+                display: table-cell;
+                vertical-align: top;
+                font-size: 110%;
+                float: none !important;
+                text-align: left !important;                
+            }
+
+            .cop-tile li.cop-tile-description {
+                padding-top: 1px;
+                font-size: 82%;
+                float: none !important;
+                text-align: left !important;
+                height: 100% !important;
+            }
+
+        .cop-tile:hover ul {
+            top: 0px;
+        }
+</style>
+
+
+<div ng-controller="nodesController" style="width: 100%; margin-top: 10px;">
+    <div class="content-loading">Loading contents...</div>
+    <div portlet-container on-load="onLoad" on-load-complete="onLoadComplete" on-initialize="getParentNodes()" style="display: none;" ng-transclude>
+        <div class="wrap" ng-show="nodes.length">            
+            <div class="scrollbar">
+                <div class="handle">
+                    <div class="mousearea"></div>
+                </div>
+            </div>
+            <div class="frame">
+                <ul class="framecomp">
+                    <li class="framecomp" ng-repeat="node in nodes | orderBy: 'SortOrder'" repeater-completed-callback="onLoadComplete" is-last-item="$last" oms-repeater>
+                        <span class="cop-tile" ng-style="{backgroundColor: node.isSelected ? 'rgb(0, 114, 198)' : '#ddd'}">
+                            <a ng-click="selectNode(node);" href="#" style="background-repeat: no-repeat; background-position: 50px 2px; background-size: 50px 50px;" ng-style="{ backgroundImage: 'url(' + node.ImageURL + ')' }">
+                                <ul>
+                                    <li class="cop-tile-title"><span>{{node.Title}}</span></li>
+                                    <li class="cop-tile-description"><span>{{node.Excerpt}}</span></li>
+                                </ul>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

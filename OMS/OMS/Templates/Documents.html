@@ -1,0 +1,8 @@
+﻿<div ng-controller="documentsController" ng-show="documents.length" style="padding: 5px;">
+    <h2>Key Documents</h2>
+    <div portlet-container on-load="onLoad" on-load-complete="onLoadComplete" style="display: none;" ng-transclude>
+        <span ng-show="nodeTitle" style="padding-bottom: 5px; font-size: 16px; color: #808080;">{{nodeTitle}}<br /></span><br />
+        <span ng-hide="documents.length">There are no documents for the selected node.</span>
+        <div ng-repeat="document in documents | orderBy: 'Title'" ng-style="{backgroundColor: $even? '#eee' : '#fff'}"><a href="{{document.Url}}" style="color: #247fb4;" target="_blank">{{document.Title}}</a></div>
+    </div>
+</div>

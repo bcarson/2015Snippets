@@ -1,0 +1,13 @@
+﻿<div ng-controller="associatedPeopleController" ng-show="people.length" style="padding: 5px;">
+    <h2>Associated People</h2>
+    <div portlet-container on-load="onLoad" on-load-complete="onLoadComplete" style="display: none;" ng-transclude>
+        <span ng-hide="people.length">There are no associated people for the selected node.</span>
+        <div ng-repeat="role in roles">
+            <div ng-bind="role" style="font-weight: bold;"></div>
+            <div ng-repeat="person in people | filter:role | orderBy: 'SortOrder'" style="margin-left: 40px;">
+                <div style="float: left; width: 50px; height: 50px; background-repeat: no-repeat; background-size: contain;" ng-style="{backgroundImage: 'url(http://corpapps.conocophillips.net/ADPhotos/GetImageHandler.ashx?id={{person.UserID}}&display=true)'}"></div>
+                <div style="padding-top: 15px; height: 50px;"><span ng-bind="person.UserName" sip="{{person.Email}}" oms-attach-lync-popup></span></div>                
+            </div>
+        </div>
+    </div>
+</div>

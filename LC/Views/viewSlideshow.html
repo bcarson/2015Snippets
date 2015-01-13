@@ -1,0 +1,35 @@
+<div id="slideshow">	
+	<div id="carousel" class="carousel slide" data-ride="carousel">
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li ng-repeat="pic in pics | orderBy:'Order0' " data-target="#carousel" data-slide-to="{{ $index }}" ng-class="{active:$first}">
+	    	<span class="frame"><img ng-src="{{ pic.FileRef }}" /></span>
+	    </li>
+	  </ol>
+	
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	    <div ng-repeat="pic in pics | orderBy:'Order0' " class="item" ng-class="{active:$first}">
+	      <img ng-src="{{ pic.FileRef }}" alt="{{ pic.Title }}" />
+	      <div class="carousel-caption">
+			<span class="cTitle">{{ pic.Title }}</span><br />
+			<span class="cDesc">{{ pic.Description }}</span><br />
+			<span class="cMore">
+				<a href="{{ pic.Hyperlink }}" style='color:red;'>Read More<i class="glyphicon glyphicon-chevron-right"></i></a>
+			</span>
+	      </div>
+	    </div>
+	
+	  </div>
+	
+	  <!-- Controls -->
+	  <a class="left carousel-control" href="#carousel" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	  </a>
+	  <a class="right carousel-control" href="#carousel" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	  </a>
+	</div>	
+		
+	<div id="slideFooter"></div>		
+</div>

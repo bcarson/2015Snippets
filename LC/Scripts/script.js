@@ -1,0 +1,1 @@
+console.log('spchr.cop.net script updated 7/8/14 7:53am -bjc');

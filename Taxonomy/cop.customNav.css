@@ -1,0 +1,190 @@
+.nav-justified.nav-tabs li:focus a, .nav-justified.nav-tabs li a:focus, .nav-justified.nav-tabs li a:hover {
+	backgrond-color:#666;
+}
+
+.navbar .topNavigationContainer nav.topNavigation ul.level2 > li > a {
+	height:45px !important;
+}
+
+#contentRow {
+	padding-right:220px;
+}
+
+.copCLSCustomPageNav {
+	display: block;
+}
+#copCustomPageNav {
+   display: block;
+}
+
+#copCustomPageNav header {
+	background-color:#870006;
+	height:60px;
+	font-size:14px;
+}
+
+#headerLogo {
+	float:left;
+	margin-left:0;
+}
+
+#headerTitle {
+	color:#fff;
+	font-size: 2em;
+	padding-top:10px;
+	float:left;
+}
+
+.first, .second, .thirdContainer {
+	display:none;
+}
+
+#copCustomPageNav .nav-main {
+    display:table;
+    border-collapse:collapse;
+    width:100%;
+    margin:0;
+    font-weight:800;
+    font-size:16px;
+}
+
+#copCustomPageNav .nav-main > a {
+    display:table-cell;
+    width:1%;
+    padding:5px;
+    border:1px solid #F1F1F1;
+    outline:none;
+    background:#f1f1f1;
+    color:#870006;
+    text-decoration:none;
+    vertical-align:middle;
+    text-align:center;
+    line-height:1em;
+}
+
+#copCustomPageNav .nav-main > a:hover,
+#copCustomPageNav .nav-main > a:focus {
+    background:#fff;
+    border-bottom-color:#fff;
+    text-decoration:none !important;
+}
+
+#copCustomPageNav .nav-main > a .dropdown {
+	display:none;
+}
+
+#copCustomPageNav .nav-main > a:hover .dropdown {
+	position:absolute;
+	border:1px solid #F1F1F1;
+	border-top:none;
+	min-height:460px;
+	background-color:#fff;
+	z-index:100;
+	left:220px;
+	top:200px;
+	overflow: hidden;
+	padding-left:30px;
+}
+
+.first {
+	width:1168px; 
+}
+
+.first, .second, .third {
+	position:relative;
+	color:#870006;
+	text-align:left;
+	border-top:none;
+	padding-right:80px;
+	padding-top:5px;
+}
+
+.first a, .second a, .third a {
+	color:#555;
+	margin-left:10px;
+	padding-left:10px;
+	height:36px;
+	width:300px;
+	display:block;
+	line-height:2em;
+	text-decoration:none !important;
+}
+
+.first:first-of-type {
+	padding-top:20px;
+}
+
+#copCustomPageNav a:hover .first, .first:hover .second, .second:hover .third {
+	display:block;
+}
+
+.first:hover > a {
+	background-color:#870006;
+	color:#fff;
+}
+
+.second:hover > a, .third a:hover {
+	color:#870006;
+	background-color:#f6f6f6;
+}
+
+.first:hover a .firstPoint {
+	position:relative;
+	content:'';
+	float:right;
+	width: 0;
+	height: 0;
+	background:none;
+	margin-left:13px;
+	margin-right:-13px;
+	border-top: 18px solid transparent;
+	border-left: 13px solid #870006;
+	border-bottom: 18px solid transparent;
+}
+
+.secondContainer {
+	left:-99999px;
+}
+
+.first:hover .secondContainer, .second:hover .thirdContainer {
+	position:fixed;
+	display:block;
+	color:#870006;
+	z-index:100;
+}
+
+.shadow {
+	position: absolute;
+    z-index: 1000; /* Something high */
+    height: 200px;
+    width: 200px;
+    background: white;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px; /* Negative half width */
+    margin-top: -100px; /* Negative half height */
+    box-shadow: 0 0 0 2038px rgba(0,0,0,.5); /* The semi-transparent bg. Something weird about Safari and numbers bigger than this */
+    -webkit-transition: 1s; /* Little extra spice */
+}
+
+@media (max-width:1366px) { /* laptop screen */
+
+	.first {
+		width:905px;
+	} 
+
+	.first a, .second a, .third a {
+		width:250px;
+		font-size:14px;
+	}
+
+	.third a {
+		width:260px;
+	}
+}
+
+
+.flash {
+	position:relative;
+	z-index:10;
+}

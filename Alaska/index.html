@@ -1,0 +1,59 @@
+<link href="../SiteAssets/JQuery/bootstrap.min.css" rel="stylesheet" />
+<link href="../SiteAssets/CSS/font-awesome.min.css?version=3" rel="stylesheet">
+<link href='../SiteAssets/CSS/itStyle.css?version=131' rel='stylesheet' />
+<script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
+<script type="text/javascript" src="/_layouts/15/sp.js"></script>
+<script type="text/javascript" src="/_layouts/15/SP.UserProfiles.js"></script>
+<script type="text/javascript" src="/_layouts/15/sp.publishing.js"></script>
+<script type='text/javascript' src='../SiteAssets/Scripts/app.js?version=255'></script>
+
+<div id='container'>
+
+	<!-- Initialize Angular Controller -->
+	<div ng-controller='itHome' ng-cloak>
+
+		<div id='columnLeft'>
+			<div id='headerLeft'><a href='#' ng-click="selectTab('#Home_Welcome', homeBlock[0], homeTab[0])"><h2>Alaska IT Home</h2></a></div>
+			
+			<!-- Left Sidebar Accordion -->
+			<div accordion id='accordion'>
+				<div accordion-group ng-repeat='acc in accordion | filter:{Title: "!Home"}' ng-init='parentAcc=acc.Id' heading='{{ acc.Title }}' is-open='acc.open' ng-class="{'icon-caret-right': acc.open, 'icon-caret-down': !acc.open}">
+					<!-- Content Blocks which Activate Tabs -->
+					<a ng-repeat='block in blocks | parentBlock:parentAcc | filter:{link:"false"}' ng-init='parentBlock=block.Id' class='block' href="#{{ block.clean }}" ng-class='{active:block.Id==selectedBlock}' ng-click='selectBlock(block.Id)' ng-style="{backgroundColor: block.BlockColor.Hex}">
+						<span class='icon'><i class='fa {{ block.Icon }}'></i></span><span class='blockTitle'>{{ block.Title }}</span>
+					</a>
+					<!-- Link Blocks which Navigate to Another Page -->
+					<a ng-repeat='block in blocks | parentBlock:parentAcc | filter:{link:"true"}' class='block' href="{{ block.URL.Url }}" ng-class='{active:block.Id==selectedBlock}' ng-style="{backgroundColor: block.BlockColor.Hex}">
+						<span class='icon'><i class='fa {{ block.Icon }}'></i></span><span class='blockTitle'>{{ block.Title }}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id='columnRight'>
+			<div id='headerRight'>
+				<!-- Dropdown section -->
+				<div id='dropdownGreeting'>What can we help you with?</div>
+				<div id='dropdownPoint'></div>
+				<div id='dropdown'>
+					<select ng-model='selectedItem' ng-options='item.Title for item in dropdown'>
+						<option value=""> Select</option>
+					</select>
+				</div>
+				<a href='{{ selectedItem.targetUrl.Url }}' id='submit' ng-click='deepLinks(selectedItem.targetUrl.Url)'>GO</a>
+			</div>
+
+			<!-- Main Content Area - TABS -->
+			<h2>{{ blocks[selectedBlock - 1].Title }}</h2>
+			<div tabset id='tabset'>
+				<div tab ng-repeat='tab in tabs | parentBlock:selectedBlock' heading="{{ tab.Title }}" 
+				id='{{ blocks[selectedBlock - 1].clean }}_{{ tab.clean }}' active="tab.active" disabled="tab.disabled">
+					<div class='tabBody'>
+						<span ng-bind-html='tab.Body'></span>
+					</div>
+				</div>
+			</div> 
+		</div><!-- end #columnRight -->
+
+	</div><!-- end itHome controller -->
+</div><!-- end #container -->

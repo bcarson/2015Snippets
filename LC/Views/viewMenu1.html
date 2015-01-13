@@ -1,0 +1,29 @@
+<nav id="mainNav" class="navbar nav" mydropdown style="min-height:45px;">
+	<ul class="main">
+		<li ng-repeat="item in menuMain | orderBy:'DisplayOrder'" ng-mouseenter="hover=true" ng-mouseleave="hover=false" ng-class="{active: hover, 'pull-right':$last}"><a href="{{ item.Hyperlink.Url }}" style="color:#870006;font-size:12px;">{{ item.Title }}</a>
+			<div class="subNav" ng-show="hover">
+				<ul class="firstHeadings" style='padding-top:5px;'>
+					<li ng-repeat="itemOne in menuOne | filter:{ ParentMenuItemId: item.ID }:true | orderBy:'DisplayOrder'" ng-mouseenter="toggle1=true" ng-mouseleave="toggle1=false" ng-class="{'toggled': toggle1}">
+						<a href="{{ itemOne.Hyperlink.Url }}">{{ itemOne.Title }}</a><span class="point"></span>
+						<span class="keepOpen" ng-show="toggle1"></span>
+
+					<div class="secondHeadings" style='padding-top:5px;'>
+					<ul ng-show="toggle1" ng-repeat="itemTwo in menuTwo | filter: {ParentMenuItemId: itemOne.ID}:true | orderBy:'DisplayOrder'">
+						<li ng-mouseenter="toggle2=true" ng-mouseleave="toggle2=false" ng-class="{'toggled': toggle2}">
+						<a href="{{ itemTwo.Hyperlink.Url }}">{{ itemTwo.Title }}</a>
+						<span class="keepOpen" ng-show="toggle2"></span>
+					
+							<div class="thirdContent" style='padding-top:5px;'>
+								<ul ng-repeat="itemThree in menuThree | filter: {ParentMenuItemId:itemTwo.ID}:true | orderBy:'DisplayOrder'" ng-show="toggle2">
+									<li><a href="{{ itemThree.Hyperlink.Url }}">{{ itemThree.Title }}</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</nav>

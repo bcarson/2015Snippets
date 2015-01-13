@@ -1,0 +1,21 @@
+<!--<ul id="announcements">
+<li ng-repeat="item in announcements"><h5 data-toggle="popover" data-content="item.Body | truncate:5">{{ item.Title | truncate:50 }}</h5><span ng-bind-html="item.Body"></span></li>
+</ul>-->
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default" ng-repeat="item in announcements | limitTo: 3 | orderBy:'Modified':true">
+    <div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ item.ID }}">
+             <h4 class="panel-title" style="color:#333;">
+                <a href="#">
+          {{ item.Title | truncate: 45 }}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse{{ item.ID }}" class="panel-collapse collapse" ng-class='{in:$first}'>
+      <div class="panel-body" style="color:#333;">
+        <span ng-bind-html="item.Body | truncate: 300"></span>
+        <br /><a href='{{ item.Link }}' ng-show="item.Link">Read More ></a>
+      </div>
+    </div>
+  </div>
+</div>
