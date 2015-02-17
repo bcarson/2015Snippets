@@ -1,0 +1,46 @@
+﻿<!-- ######################################     	Begin Tab - Global Course List   		########################################### -->
+
+<div id="fullCalendar">
+		
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default" ng-repeat="disc in coursefilters.disciplines | orderBy:'corpOrder'">
+		
+			<div class="panel-heading" ng-init="selected = disc.name">
+				<h2 class="dateBar panel-title {{ disc.name | truncate:4 }}">
+					<a class="accordion-toggle" data-toggle="collapse" data-target="#{{ disc.name | clean }}" href="#">
+						{{ disc.corpFunction }} - {{ disc.name }} <i class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+				</h2>
+			</div>
+
+			<div id="{{ disc.name | clean }}" class="panel-collapse collapse courses">
+				<div class="panel-body primary">
+					<h3>{{ wait }}</h3>
+
+				<ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+					<li ng-repeat="course in filteredCourses | filter:selected" class="one" ng-class-even="'even'">
+
+						
+					
+					
+					</li>
+				</ul>
+			<!-- ******* -->
+						
+			</div>
+			</div>
+			</div>
+	
+	</div><!-- END .panel-group -->
+
+</div><!-- end #fullCalendar -->
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-99</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">c7c9c611-70c1-44c5-88bc-e0ecdb0f6932</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-99, UMVK2C7JZUWU-1-99</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

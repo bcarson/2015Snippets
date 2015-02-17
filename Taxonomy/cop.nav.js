@@ -1,6 +1,6 @@
 /*********************************************************************
 ******   CUSTOM DROPDOWN NAVIGATION W/SHAREPOINT 2013 TAXONOMY  ******
-******   Author: Bonnie Carson for CoP ACEO, Version 0 11/5/14  ******
+******   Author: Bonnie Carson for CoP ACEO, Version 2 1/28/15  ******
 ******   Dependencies: RequireJS, jQuery and cop.customNav.css  ******
 ******   DOM elements are appended to anchor #copCustomPageNav  ******
 /*********************************************************************/
@@ -9,13 +9,35 @@
 var url, context, termSetGuid, termStoreGuid, title, icon;
 var main, first, second, third;
 var mainPromise, firstPromise, secondPromise, thirdPromise;
+var navbar, navbarWidth, navbarHeight;
+var loaded;
 
 //Add all the relevant functions for Nav
 cop.nav = cop.nav || {
     scriptReady: function () {
         require(['jquery'], function($) {
 		    $(document).ready(function(){
-			
+				loaded = false;
+		    	$(window).resize(function(){ resetSubnav() });
+				$(window).scroll(function(){ resetSubnav() });
+
+		    	$('#navbar,.copCLSCustomPageNav,#navHeader').css('z-index','0');
+		    	// To prevent errors in case of any rogue console log statements
+				if (typeof console == "undefined" || typeof console.log == "undefined") var console = { log: function() {} };
+				
+				// Activate shadow overlay behind dropdown menu
+				$('.copCLSCustomPageNav').hover(function(){
+					$('#navbar,#navHeader').css('position','relative');
+					$('#navbar,.copCLSCustomPageNav,#navHeader').css('z-index','10000');
+					//$('.copCLSCustomPageNav').css('z-index','10000');
+					$('#pageOverlay').css('display','block');
+				},function(){
+					$('#pageOverlay').css('display','none');
+					//$('.copCLSCustomPageNav').css('z-index','10');
+					$('#navbar,.copCLSCustomPageNav,#navHeader').css('z-index','0');
+				});
+
+				//$(window).resize(function(){ initialSubnav(); secondSubnav(); });
 				// Initialize arrays and promises for each level of the menu
 				main = []; mainPromise = $.Deferred();
 				first = []; firstPromise = $.Deferred();
@@ -41,19 +63,15 @@ cop.nav = cop.nav || {
 
 				mainPromise.then(function(){
 					// After main promise is resolved, send main menu items to DOM and retrieve first level dropdown items
-					if(icon){
-						$('#copCustomPageNav').append('<header><div id="headerLogo"><img src="' + icon + '" /></div><div id="headerTitle">' + title + '</div></header>');
-					}
-					
-					$('#copCustomPageNav').append('<div class="nav-main"></div>');
-					placeSubnav();
+					$('#copCustomPageNav').append('<header id="navHeader"><a href=' + url + '><div id="headerLogo"><img src="' + icon + '" /></div><div id="headerTitle">' + title + '</div></a></header>')
+					$('#copCustomPageNav').append('<div class="nav-main" id="navbar"></div>');
 					asyncLoop(main.length, function(loop){
 						var item = main[loop.iteration()];
-						$('.nav-main').append("<a href='" + item.url + "'>" + item.name + "<div class='dropdown' id=" + item.id + "></div></a>");
-						getChildren(item.term, item.name, first, function(){
+						pushToDOM(0, item);
+						getChildren(1, item.term, item.name, first, function(){
 							loop.next();
 						})
-					}, function(){ firstPromise.resolve(); });
+					}, function(){ initialSubnav(); firstPromise.resolve(); });
 				});
 
 				
@@ -61,40 +79,135 @@ cop.nav = cop.nav || {
 				// Send first level menu items to DOM, retrieve second level dropdown items
 					asyncLoop(first.length, function(loop){
 						var item = first[loop.iteration()];
-						$('#' + item.parent).css('display','block');
-						$('#' + item.parent).append("<div class='first'><a href='" + item.url + "'>" + item.name + "<div class='firstPoint' /></a><div class='secondContainer' id='" + item.id + "' /></div>");
-						getChildren(item.term, item.name, second, function(){ loop.next(); });
-					}, function(){ secondPromise.resolve(); });
+						getChildren(2, item.term, item.name, second, function(child){ 
+							loop.next(); 
+						});
+					}, function(){ secondSubnav(); secondPromise.resolve(); });
 				});
 
 				
 				secondPromise.then(function(){
-				// Send second level menu items to DOM, retrieve third level dropdown items
+				// Send second level menu items to DOM, retrieve third level dropdown items	
 					asyncLoop(second.length, function(loop){
 						var item = second[loop.iteration()];
-						$('#' + item.parent).append("<div class='second'><a href='" + item.url + "'>" + item.name + "<div class='secondPoint' /></a><div class='thirdContainer' id='" + item.id + "' /></div>");
-						getChildren(item.term, item.name, third, function(){ loop.next(); }); 
+						getChildren(3, item.term, item.name, third, function(){ loop.next(); }); 
 					}, function(){ thirdPromise.resolve(); });
 				});
 
 				
 				thirdPromise.then(function(){
-				// Send third level menu items to DOM then placeSubnav to make sure items are placed properly
+				// Send third level menu items to DOM then placeSubnav to make sure items are placed properly	
 					asyncLoop(third.length, function(loop){
 						var item = third[loop.iteration()];
-						$('#' + item.parent).append("<div class='third'><a href='" + item.url + "'>" + item.name + "</a></div>");
 						loop.next();
-					}, function(){ placeSubnav(); });
+					}, function(){  });
+					loaded = true;
 				});
-
-				$( window ).resize(function() {
-				  placeSubnav();
-				});
-
 		    }); // END document.ready
 		}); // END require
     } // END scriptReady
 }; // END cop.nav
+
+
+function pushToDOM(level, item){
+	if(level === 0){ // Main Menu
+		$('.nav-main').append("<a href='" + item.url + "'>" + item.name + "<div class='dropdown' id=" + item.id + "></div></a>");
+	} else if(level === 1){
+		$('#' + item.parent).css('display','block').append("<div class='first'><a href='" + item.url + "'>" + item.name + "<div class='firstPoint' /></a><div class='secondContainer' id='" + item.id + "' /></div>");
+	} else if(level === 2){
+		$('#' + item.parent).append("<div class='second'><a href='" + item.url + "'>" + item.name + "<div class='secondPoint' /></a><div class='thirdContainer' id='" + item.id + "' /></div>");
+	} else if(level === 3){
+		$('#' + item.parent).append("<div class='third'><a href='" + item.url + "'>" + item.name + "</a></div>");
+	}
+};
+
+function resetSubnav(){
+	if(loaded){ 
+		initialSubnav();
+		secondSubnav();
+	}
+}
+
+function initialSubnav(){
+	//console.log('initialSubnav');
+	navbar = document.getElementById('navbar');
+	if(navbar){
+		navbarWidth = navbar.offsetWidth;
+		navbarHeight = navbar.offsetHeight;
+		$('.first').css('width', navbarWidth);
+		$('.dropdown').css('top', navbarHeight - 1).css('max-width',navbarWidth);
+	}
+}
+
+function secondSubnav(){
+	//console.log('secondSubnav');
+	var dropdown = document.getElementsByClassName('dropdown')[0].getBoundingClientRect();
+	var first = document.getElementsByClassName('first')[0].getBoundingClientRect();
+	var navbarLeft = navbar.offsetLeft;
+	var third = navbarWidth * 0.33;
+	var twoThird = third * 2;
+	var top = first.top || dropdown.top;
+	if(top){
+		if(third){
+			$('.second a, .third a').css('width',third);
+			$('.secondContainer').css('left', navbarLeft + third + 50).css('top', top + 15);
+			$('.thirdContainer').css('left', navbarLeft + twoThird + 50).css('top', top + 15);
+		}
+	}
+
+}
+
+function placeSubnav(source){ /*
+	console.log(source);
+	var header = $('#copCustomPageNav');
+	var headerWidth = header.width();
+	var headerHeight = header.height();
+	var nav = $('.nav-main');
+	var navbar = document.getElementById('navbar');
+	if(navbar){
+		var navbarWidth = navbar.offsetWidth;
+		var navbarHeight = navbar.offsetHeight;
+		var navbarTop = navbar.offsetTop;
+		var navbarLeft = navbar.offsetLeft;
+		var third = navbarWidth * 0.33;
+		var twoThird = third * 2;
+		$('.first').css('width', navbarWidth);
+		$('.dropdown').css('top', navbarHeight - 1).css('max-width',navbarWidth);
+		var top = $('.dropdown').position();
+		if(top){
+			var elements = document.getElementsByClassName('dropdown');
+			var coord = elements[0].getBoundingClientRect();
+			$('.second a').css('width',third);
+			$('.third a').css('width', third);			
+			if(top.top > coord.top){
+				console.log('one | navbarTop + navbarHeight + 85: ' + (navbarTop + navbarHeight + 85));
+				$('.secondContainer').css('left', navbarLeft + third + 50).css('top', navbarTop + navbarHeight + 85);
+				$('.thirdContainer').css('left', navbarLeft + twoThird + 50).css('top', navbarTop + navbarHeight + 85);					
+			} else { 
+				if(coord.top < 300){
+					console.log('two | coord.top + 15: ' + (coord.top + 85));
+					$('.secondContainer').css('left', navbarLeft + third + 50).css('top', coord.top + 15);
+					$('.thirdContainer').css('left', navbarLeft + twoThird + 50).css('top', coord.top + 15);						
+				} else if(coord.top > 400) {
+					console.log('three | navbarTop + navbarHeight + 80: ' + (navbarTop + navbarHeight + 80));
+					$('.secondContainer').css('left', navbarLeft + third + 50).css('top', navbarTop + navbarHeight + 80);
+					$('.thirdContainer').css('left', navbarLeft + twoThird + 50).css('top', navbarTop + navbarHeight + 80);					
+				} else {
+					console.log('four | navbarTop + navbarHeight + 15: ' + (navbarTop + navbarHeight + 15));
+					$('.secondContainer').css('left', navbarLeft + third + 50).css('top', navbarTop + navbarHeight + 15);
+					$('.thirdContainer').css('left', navbarLeft + twoThird + 50).css('top', navbarTop + navbarHeight + 15);					
+				}
+
+			
+			}
+			if(typeof(console) != undefined){
+				if(top){
+					//console.log('top: ' + top.top + ',  navbarTop: ' + navbarTop + ', navbarHeight: ' + navbarHeight + ', coord.top: ' + coord.top);
+				}	
+			}
+		}
+	} */
+ }
 
 // Retrieve GUIDs for TermSet and Term Store from SharePoint List "MenuConfig"
 function getMenuConfig(url){
@@ -108,11 +221,11 @@ function getMenuConfig(url){
 			termStoreGuid = config.TermStoreGUID;
 			termStoreName = config.TermStoreName;
 			title = config.Title;
-			if(config.IconImage){ icon = config.IconImage.Url; } 
+			icon = config.IconImage.Url;
 			getTermSet();
 		},
 		error: function(sender, args){
-			//alert('Error: ' + args.get_message());
+			console.log('Error: ' + args.get_message());
 		}
 	})
 }
@@ -136,16 +249,17 @@ function getTermSet(){
 			var termName = term.get_name();
 			var termUrl = term.get_localCustomProperties();
 			var termId = clean(termName);
+			if(termUrl.url === undefined){termUrl.url = '#';}
 			main.push({'term':term,'name':termName,'id':termId,'url':termUrl.url});
 		}
 	}
 	// After all terms are retrieved and main array is populated, resolve main promise
 	mainPromise.resolve('main promise resolved ' + main);
-	}, function(sender, args){ alert('Error: ' + args.get_message()); });
+	}, function(sender, args){ console.log('Error: ' + args.get_message()); });
 }
 
 // Get child terms for each term, called from asyncLoop functions below
-function getChildren(term, termName, array, callback){
+function getChildren(level, term, termName, array, callback){
 	var cleanTermName = clean(termName)
 	var terms = term.get_terms();
 	context.load(terms);
@@ -156,12 +270,14 @@ function getChildren(term, termName, array, callback){
 	       var childTermName = childTerm.get_name();
 	       var cleanName = clean(childTermName);
 	       var childProperties = childTerm.get_localCustomProperties();
+	       if(childProperties.url === undefined){childProperties.url = '#';}
 	   	   var childObject = {'parent':cleanTermName,'term':childTerm,'name':childTermName,'id':cleanName,'url':childProperties.url};
 	   	   array.push(childObject);  
+	   	   pushToDOM(level, childObject);
 	   }
-	   	callback(childTermName)
+	   callback(childObject)
 	}, 
-	function(sender,args){ alert('Error: ' + args.get_message()); });
+	function(sender,args){ console.log('Error: ' + args.get_message()); });
 }
 
 // Manage asyncronous nested loops, terminate loop and activate callback upon completion
@@ -187,22 +303,6 @@ function asyncLoop(count, operations, callback){
 	};
 	loop.next();
 	return loop;
-}
-
-// Determine width and placement of responsive menu container, size and position dropdown menu accordingly.
-function placeSubnav(){
-	var nav = $('.nav-main');
-	var menuWidth = nav.width();
-	var menuHeight = nav.height();
-	var menuOffset = nav.offset();
-	if(menuOffset){
-		var third = menuWidth*0.33;
-		var twoThird = menuWidth*0.6;
-		$('.first').css('width', menuWidth);
-		$('.dropdown').css('top',menuOffset.top - 27).css('left',menuOffset.left);
-		$('.secondContainer').css('left',menuOffset.left + third).css('top',menuOffset.top + menuHeight + 20);
-		$('.thirdContainer').css('left', menuOffset.left + twoThird + 50).css('top',menuOffset.top + menuHeight + 20);				
-	}	
 }
 
 // Remove spaces to convert item names to CSS selectors

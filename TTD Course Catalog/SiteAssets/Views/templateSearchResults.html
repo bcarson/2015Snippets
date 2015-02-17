@@ -1,0 +1,52 @@
+﻿<h2 class="searchResults dateBar" style="display:block;font-size:1.6em;background-color:#888;margin-top:5px;" 
+ng-show="behavior.courseview || behavior.classview">
+	<span style="float:left;height:20px;">Searching for: 
+
+	<span style="font-size:0.9em;">{{ search }} </span> 
+	<a href="" class="clear" ng-show="search" ng-click="search=''"><i class="glyphicon glyphicon-remove"></i></a>
+	<br />
+	</span>
+	
+	<div>
+		<span ng-repeat="disc in coursefilters.disciplines | filter:{selected:true}" class="searchResults">
+			{{ disc.name }}
+			<a href="#" class="clear" ng-click="disc.selected=!disc.selected"><i class="glyphicon glyphicon-remove"></i></a>
+		</span>
+	</div>
+	
+	<div>
+	<span ng-repeat="skill in coursefilters.skills | filter:{selected:true}" class="searchResults">
+		{{ skill.name }}
+		<a href="#" class="clear" ng-click="skill.selected=!skill.selected"><i class="glyphicon glyphicon-remove"></i></a>
+	</span>
+	</div>
+		
+	<div>
+	<span ng-repeat="type in classfilters.types | filter:{selected:true}" class="searchResults">
+		{{ type.name }}
+		<a href="#" class="clear" ng-click="type.selected=!type.selected"><i class="glyphicon glyphicon-remove"></i></a>
+	</span>
+	</div>
+	
+	<div>
+	<span ng-repeat="location in classfilters.locations | filter:{selected:true}" class="searchResults">
+		{{ location.name }}
+		<a href="#" class="clear" ng-click="location.selected=!location.selected"><i class="glyphicon glyphicon-remove"></i></a>
+	</span>
+	<span class="searchResults" ng-show="classfilters.date">
+		Classes starting {{ classfilters.date | date:'MM/dd/yyyy'}} or later
+		<a href="#" class="clear" ng-click="classfilters.date=''"><i class="glyphicon glyphicon-remove"></i></a>
+	</span>
+	</div>
+
+	<a href="#" ng-click="behavior.clear()" class="clear" style="font-size:0.8em;">Clear Filters<i class="glyphicon glyphicon-remove"></i></a>
+</h2>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-104</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">f68e1fe3-cbbb-4f3d-8306-e19aadbb6981</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-104, UMVK2C7JZUWU-1-104</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

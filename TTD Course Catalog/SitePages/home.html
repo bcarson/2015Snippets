@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<!--	************************************* 
+		************* HOME PAGE *************
+		************************************* -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-2-17</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">0db3ad71-15df-4045-b205-6096880eb0bf</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-2-17, UMVK2C7JZUWU-2-17</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body id="home">
+
+<div class="ng-scope" id="wrapper" ng-app="app" resize>
+<div id="fluidDiv" class="container" data-ng-controller="ttdController">
+<div ng-include=" '../SiteAssets/Views/viewNav.html' "></div>
+
+<div class="row">	
+	
+	<div id="slideshow" class="col-md-6">	
+		<carousel class="carousel" interval="myInterval">
+	      <slide ng-repeat="pic in pics" active="pic.active">
+	        <img ng-src="http://bvlspadweb1/sites/TechnicalTraingDEV/Slideshow%20Images/{{pic.Filename}}" style="margin:auto;" />
+	          <div class="carousel-caption">{{ pic.Title }}</div>
+	          <div class="carousel-description"><span style="width:75%; float:left;">{{pic.Description}}</span></div>
+	      </slide>
+	    </carousel>
+	</div>
+		
+	<div id="miniCalendar" class="col-md-4" style="padding-right:0;">
+		<h2 id="message">{{ greeting }}</h2>
+		<div id="innerCalendar">
+			<ul><!-- ***** Begin AngularJS loop for Calendar Events ***** -->
+				<li class="one" id="search">
+				<input ng-model="search" type="text" class="form-control" placeholder="Search for Training..." />
+				</li>
+				<h2 class="uppercase" id="innerH2">Featured and Upcoming Courses </h2>
+					<li ng-repeat="class in classes | orderBy:['-Featured','StartDate'] | filter:search | filter:{current:'thismonth' || 'nextmonth' || 'monthafter'}" class="one" ng-class-even="'even'">
+					<div class="date">
+						<div class="month">{{ class.StartDate | date:'MMM' }}</div>
+						<div class="day">{{ class.StartDate | date:'d' }}</div>
+					</div>
+					<div class="details">
+					<span class="title">
+						<a href="{{ class.link }}" title="{{ class.course.Title }}">
+							<icon class="glyphicon glyphicon-star" ng-show="class.Featured"></icon>
+							<span class="smallTitle">{{ class.course.Title | truncate:33 }}</span>
+							<span class="fullTitle">{{ class.course.Title }}</span>
+						</a>
+					</span>
+					{{ class.Title }} {{ class.country }}<br />
+					
+							<div class="rightIcons mini">
+							    <div class="icon disc {{ class.course.PrimaryDiscipline | truncate:4 }}">
+								    <a href="#" tooltip-placement="left" tooltip="Primary Discipline: {{ class.course.PrimaryDiscipline }}">
+								    {{ class.course.PrimaryDiscipline| truncate:1 }}
+								    </a>
+							    </div>
+							    <div class="icon {{ class.ClassType | truncate:4 }}">
+								    <a href="#" tooltip-placement="left" tooltip="Class Type: {{ class.ClassType }}">
+								    {{ class.ClassType | truncate:1 }}
+								    </a>
+							    </div>
+							</div>
+					</div>
+				</li>
+				<li ng-hide="(class | orderBy:'startDate' | filter:search).length < 4" class='one viewMore'>
+					<a href="Calendar.aspx">Browse All Courses<icon class="glyphicon glyphicon-arrow-right"></icon></a>
+				</li>
+			</ul>
+		</div><!-- END #innerCalendar -->
+		
+	</div><!-- END #miniCalendar -->
+
+</div><!-- END .row -->
+
+    <div class="footer row">
+
+		<div class="footBoxes drop">
+		<span class="title">Who We Are</span>
+			<a href="#">
+				<img src="../SiteAssets/Images/who.jpg" style="max-height:160px;margin-left:-20px;" />
+			</a>
+		</div>
+		
+		<div class="footBoxes secondDrop">
+		<span class="title">What We Are Doing</span>
+			<a href="http://upstreamvideo/TTD/Newsletter/CurrentNewsletter/TTDNewsletter.html" target="_blank">
+				<img src="../SiteAssets/Images/what.jpg" style="max-height:160px;margin-left:-15px;" />
+			</a>
+		</div>
+
+
+		<div class="footBoxes secondDrop">
+		<span class="title">Performance</span>
+			<a href="#">
+				<img src="../SiteAssets/Images/How.jpg" style="max-height:160px;margin-top:-10px;" />
+			</a>
+		</div>
+		
+		<div class="footBoxes drop">
+		<span class="title">Learning Facilities</span>
+			<a href="#">
+				<img src="../SiteAssets/Images/facilities.jpg" style="height:172px;" />
+			</a>
+		</div>
+		
+		<div class="footBoxes right">
+		<span class="title">Global Course Catalog</span>
+			<a href="Calendar.aspx">
+				<img src="../SiteAssets/Images/catalog.jpg" style="height:160px;margin-left:-23px;" />
+			</a>
+		</div>
+		
+	</div>
+	
+		</div><!-- END .container -->
+		
+      <div class="clearfix"></div><br />
+
+       </div><!-- END #wrapper -->
+</body>
+
+</html>

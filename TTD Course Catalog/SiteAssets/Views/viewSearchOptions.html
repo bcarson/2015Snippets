@@ -1,0 +1,135 @@
+﻿		<!-- ###################################### 
+    		Header Section with Search Filters
+    	########################################### -->
+		<div class="jumbotron" resize>		
+			<p id="message" class="col-med-3 col-sm-12">
+			<span ng-hide="greeting">Please wait, building page...</span>{{ greeting }}
+			</p>
+			
+			<input ng-model="search" type="text" class="form-control search col-med-3 col-sm-12" 
+			placeholder="Start typing to search..." ng-change="behavior.viewcourses()" />
+			<br />			
+			<div class="accordion search-options" id="accordion1">
+				<div class="accordion-group">
+					<div class="accordion-heading pull-right col-med-3" id="searchMain" >
+						<a class="accordion-toggle search" data-toggle="collapse" data-parent="#accordion2" href="#collapseMain" ng-click="showFilters()">
+						Search Options<i class="glyphicon glyphicon-chevron-down"></i>				
+						</a>
+					</div>
+						
+					<div id="collapseMain" class="accordion-body collapse in" >
+						<div class="accordion-inner" style="height:35px;width:100%;margin-top:-4px;">
+		
+							<div class="accordion" id="accordion2">
+							      <div class="accordion-group searchGroup" float>
+							        <div class="accordion-heading"><!-- Discipline Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+							          Discipline<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseOne" class="accordion-body collapse">
+							          <div class="accordion-inner" ng-repeat="disc in coursefilters.disciplines">
+							          	<div class="checkboxes">
+											<input class="{{ disc.name | clean }} checkBox" type="checkbox" 
+											ng-click="disc.selected=!disc.selected; behavior.viewcourses()" />
+											<span class="icon checkbox disc {{ disc.name | truncate:4 }}">{{ disc.name | truncate:1 }}</span>
+											<span class="title"> {{ disc.name | truncate:30 }}</span>
+										</div>
+							          </div>       
+							        </div>
+							      </div>
+							      
+							     
+							      <div class="accordion-group searchGroup" float>
+							        <div class="accordion-heading"><!-- Skill Level Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+							            Skill Level<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseTwo" class="accordion-body collapse" style="padding-top:5px;">
+							          <div class="accordion-inner">
+							         <div ng-repeat="skill in coursefilters.skills">
+							          	<div class="checkboxes">
+											
+											<input class="{{ skill.name | clean }} checkBox" type="checkbox" 
+											ng-click="skill.selected=!skill.selected; behavior.viewcourses()"/>
+											<span class="icon checkbox level {{ skill.name | truncate:4 }}">{{ skill.name | truncate:1 }}</span>
+											<span class="title"> {{ skill.name }}<br/></span>
+										</div>
+							          </div>
+							          </div>
+							        </div>
+							      </div>
+							    
+							    
+							          <div class="accordion-group searchGroup" float>
+							        <div class="accordion-heading"><!-- Course Type Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+							            Course Type<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseThree" class="accordion-body collapse">
+							          <div class="accordion-inner">
+							            <div ng-repeat="type in classfilters.types | orderBy:'toString()'">
+							          	<div class="checkboxes">
+											<input class="{{ type.name | clean }} checkBox" type="checkbox" 
+											ng-click="type.selected=!type.selected; behavior.viewclasses()"/>
+											<span class="icon checkbox type {{ type.name | clean | truncate:4 }}">{{ type.name | truncate:1 }}</span>
+											<span class="title"> {{ type.name }}</span>
+										</div>
+							          </div>
+							          </div>						          
+							        </div>
+							      </div>
+							
+								  <div class="accordion-group searchGroup drop" float>
+							        <div class="accordion-heading"><!-- Location Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+							           Location<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseFour" class="accordion-body collapse">
+							        	<div class="accordion-inner">
+										  <div ng-repeat="loc in classfilters.locations | orderBy:'name' ">
+											<div class="checkboxes">
+												<input class="{{ loc.name | clean }} checkBox" type="checkbox" 
+												ng-click="loc.selected=!loc.selected; behavior.viewclasses()"/>	
+												<span class="title" style="padding-left:5px;"> {{ loc.name }}</span>										
+								          </div>
+										 </div>
+										</div>										
+							        </div>
+							      </div>
+		
+								  <div class="accordion-group searchGroup drop" float>
+							        <div class="accordion-heading">
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+							            Start Date<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseFive" class="accordion-body collapse">
+							          <div class="accordion-inner">
+							          		<input class="datepicker" ng-model="classfilters.date" ng-change="behavior.viewclasses()" />
+							          		<script>$('.datepicker').datepicker()</script>
+							          </div>
+							          <span class="checkboxFooter">(Filters Courses by Date)</span>							          
+							        </div>
+							      </div>
+		
+						<div class="accordion-heading expand drop"><a href="#" ng-click="behavior.clear()">Clear Filters<i class="glyphicon glyphicon-remove"></i></a></div>
+												</div>
+						</div><!-- END #collapseMain .accordion-inner -->
+					</div><!-- END #collapseMain -->
+				</div><!-- END .accordion-group -->
+			</div> <!-- End Search Options -->
+		
+		</div><!-- END .jumbotron -->
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-83</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">bee2f01f-fab0-436d-8c43-3b42a59cf7fc</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-83, UMVK2C7JZUWU-1-83</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

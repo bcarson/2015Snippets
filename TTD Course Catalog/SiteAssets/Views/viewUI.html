@@ -1,0 +1,62 @@
+﻿<results />
+<div><accordion ng-init="limit=10" close-others="false">
+	<accordion-group ng-repeat="disc in coursefilters.disciplines | orderBy:'CorpOrder'" ng-init="selected=disc.name" is-open="$parent.opendisc{{ $index }}" ng-show="(filteredCourses | filter:{ PrimaryDiscipline:selected } | filter:search).length"> 
+		<accordion-heading >
+			<h2 class="discTitles">{{ disc.CorpFunction }} - {{ disc.name }} 
+			<i class="glyphicon" ng-class="{'glyphicon-chevron-down': opendisc{{ $index }}, 'glyphicon-chevron-right': !opendisc{{$index}} }"></i></h2>
+		</accordion-heading>
+		<courses />
+	</accordion-group>
+</accordion></div>
+
+
+
+<!--	<div ng-include=" '../SiteAssets/Views/templateSearchResults.html' "></div>
+	<div class="clearfix"></div>
+	<div id="fullCalendar">
+		
+	<div class="panel-group" id="accordion">
+		<div class="panel panel-default" ng-repeat="disc in coursefilters.disciplines | orderBy:'corpOrder'">
+		
+			<div class="panel-heading" ng-init="selected = disc.name">
+				<h2 class="dateBar panel-title {{ disc.name | truncate:4 }}">
+					<a class="accordion-toggle" data-toggle="collapse" data-target="#{{ disc.name | clean }}" href="#">
+						{{ disc.CorpFunction }} - {{ disc.name }} <i class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+				</h2>
+			</div>
+
+			<div id="{{ disc.name | clean }}" class="panel-collapse collapse courses">
+				<div class="panel-body primary">
+					<h3>{{ wait }}</h3>
+
+				<ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+					<div ng-init="limit=10" />
+					<li ng-repeat="course in filteredCourses | filter:selected | limitTo:limit" class="one" ng-class-even="'even'">
+
+						
+					<loop />
+					
+					</li>
+					
+				</ul>
+				<a href="#" ng-click="limit='500'" class="btn btn-default" style="margin:5px;">Show All</a>
+						
+			</div>
+			</div>
+			</div>
+	
+	</div>
+</div><!-- end #fullCalendar -->
+
+	
+	
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-105</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">d4a8f3fd-9f35-4234-afd4-a010511284ed</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-105, UMVK2C7JZUWU-1-105</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

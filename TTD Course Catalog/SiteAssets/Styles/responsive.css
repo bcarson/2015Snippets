@@ -1,0 +1,255 @@
+﻿#contentBox {
+	margin: 0 auto;
+	min-width:0;
+}
+
+.container {
+	width:100%;
+	margin:0 auto;
+}
+
+#breakpoint {
+	width:35%;
+	display:block;
+	background-color:#ebebeb;
+	margin:0 auto;
+	text-align:center;
+
+}
+
+@media all and (max-width:1200px) {
+	#breakpoint {
+		background-color:#61B4CF;
+	}
+
+	.jumbotron input.search {
+		width:45%;
+	}
+	
+	.searchGroup {
+		width:15%;
+	}
+
+	#miniCalendar li.one .details {
+		width:75%;
+	}
+
+	.accordion-heading.print {
+		width:13.5%;	
+		padding-right:15px;
+		padding-left:0;
+		margin-top:0;
+		white-space:normal;
+	}
+
+	.selectDiscipline {
+	width:105.6%;
+	}
+
+	nav#mega ul.main li {
+	font-size:0.82em;
+	}
+	
+	.browseLeft {
+	width:72%;
+	}
+	
+	a.browse {
+	font-size:1.8em;
+	
+	}
+	
+	a.browse .glyphicon {
+	zoom:0.9;
+	padding-top:50px;
+	padding-bottom:50px;	
+	}
+	
+	.nugget img {
+	height:110px;
+	padding-left:15px;
+    }
+    
+    .nugget .browseLeft {
+	padding-bottom:27px;
+	}
+
+}
+
+@media all and (max-width:1024px) {
+	body {
+		font-size:0.9em;
+	}
+	
+	#breakpoint {
+		background-color:#06799F;
+		color:#fff;
+		
+	}
+	
+	
+
+}
+
+@media all and (max-width:990px) {
+	.rightIcons {
+		display:none;
+	}
+	
+	.drop {
+		display:none;
+	}
+	
+	.footBoxes {
+		width:32.65%;
+		margin-top:-15px;
+		padding-top:0px;
+	}
+		
+	a.browse .browseLeft {
+	padding-left:20px;
+	}
+
+	#slideshow {
+	float:none;
+	width:103.5%;
+	margin:0 0 20px -25px;
+	}
+
+	#miniCalendar {
+		width:103.5%;
+		margin:0 0 20px -25px;
+	}
+	
+	#miniCalendar li.one .details {
+		width:90%;
+	}
+	
+	#miniCalendar li.one .details .title .smallTitle {
+		display:none;
+	}	
+	
+	#miniCalendar li.one .details .title .fullTitle {
+		display:block;
+	}
+	
+	#miniCalendar .rightIcons {
+		display:block;
+	}
+	
+	#miniCalendar li#search input.form-control,
+	#miniCalendar a.viewMore {
+		width:94%;
+	}
+
+	.jumbotron p {
+		font-size:13px;
+	}
+	
+	.jumbotron input.search {
+		width:35%;
+	}
+	
+	.searchGroup {
+		width:25%;
+	}
+
+	.accordion-heading.clear {
+		width:12%;	
+	}
+
+	.selectDiscipline {
+	width:107.5%;
+	}
+
+	nav#mega ul.main li {
+	font-size:0.70em;
+	padding-right:1%;
+	}
+
+
+}
+
+@media all and (max-width:730px) {
+	#miniCalendar li.one .details  {
+	width:85%;	
+	}
+}
+
+@media all and (max-width:640px) { 
+	a.browse  {
+	font-size:1.7em;		
+	}
+	
+	#browseBox a.browse .browseLeft {
+	padding:33px 5px 34px;
+	}
+	
+	a.browse .glyphicon {
+	display:none;
+	}
+}
+
+@media all and (max-width:595px) {
+	#miniCalendar li.one .details {
+	width:85%;
+	}
+	.secondDrop {
+	display:none;
+	}
+	
+	.footBoxes {
+	width:48%;
+	}
+	
+	.nugget .browseLeft {
+	padding:15px 0;
+	}
+	
+	.nugget img {
+	height:120px;	
+	}
+	
+	#browseBox {
+	margin-left:3%;
+	} 
+	
+	#browseBox a.browse {
+	font-size:1.9em;
+	}
+	
+	#browseBox a.browse .browseLeft {
+	padding:30px;
+}
+	
+}
+
+@media all and (max-height:800px) {
+	#s4-ribbonrow {
+	display:none;
+}
+		
+	#contentRow {
+	padding-top:0;
+	}
+	
+	#breakpoint {
+	/*display:none;*/
+}
+}
+
+@media print {
+
+	#MSOZoneCell_WebPartWPQ3 {
+	display:none;
+}
+
+	#mega {
+	display:none;
+}
+
+	.dateBar {
+	color:blue !important;
+	}
+ 
+}

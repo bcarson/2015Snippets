@@ -1,0 +1,53 @@
+﻿<div id="miniCalendar" class="col-md-4" style="padding-right:0;">
+	<h2 id="message">{{ greeting }}</h2>
+	<div id="innerCalendar">
+		<ul><!-- ***** Begin AngularJS loop for Calendar Events ***** -->
+			<li class="one" id="search">
+			<input ng-model="search" type="text" class="form-control" placeholder="Search for Training..." />
+			</li>
+			<h2 class="uppercase" id="innerH2">Featured and Upcoming Courses </h2>
+				<li ng-repeat="class in classes | orderBy:['-Featured','StartDate'] | filter:search | filter:m.current" class="one" ng-class-even="'even'">
+				<div class="date">
+					<div class="month">{{ class.StartDate | date:'MMM' }}</div>
+					<div class="day">{{ class.StartDate | date:'d' }}</div>
+				</div>
+				<div class="details">
+				<span class="title">
+					<a href="{{ class.link }}" title="{{ class.course.Title }}">
+						<icon class="glyphicon glyphicon-star" ng-show="class.Featured"></icon>
+						<span class="smallTitle">{{ class.course.Title | truncate:33 }}</span>
+						<span class="fullTitle">{{ class.course.Title }}</span>
+					</a>
+				</span>
+				{{ class.Title }} {{ class.country }}<br />
+				
+						<div class="rightIcons mini">
+						    <div class="icon disc {{ class.course.PrimaryDiscipline | truncate:4 }}">
+							    <a href="#" tooltip-placement="left" tooltip="Primary Discipline: {{ class.course.PrimaryDiscipline }}">
+							    {{ class.course.PrimaryDiscipline| truncate:1 }}
+							    </a>
+						    </div>
+						    <div class="icon {{ class.ClassType | truncate:4 }}">
+							    <a href="#" tooltip-placement="left" tooltip="Class Type: {{ class.ClassType }}">
+							    {{ class.ClassType | truncate:1 }}
+							    </a>
+						    </div>
+						</div>
+				</div>
+			</li>
+			<li ng-hide="(class | orderBy:'startDate' | filter:search).length < 4" class='one viewMore'>
+				<a href="Calendar.aspx">Browse All Courses<icon class="glyphicon glyphicon-arrow-right"></icon></a>
+			</li>
+		</ul>
+	</div><!-- END #innerCalendar -->
+	
+</div><!-- END #miniCalendar -->
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-137</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">8d67d350-d747-4d5e-b99a-4f534a8d314c</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-137, UMVK2C7JZUWU-1-137</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

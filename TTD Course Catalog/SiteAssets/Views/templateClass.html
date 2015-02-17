@@ -1,0 +1,57 @@
+﻿		<accordion-group is-open="opencourse{{ $index }}">
+			<accordion-heading>
+				<h3 class="courseTitles">{{ class.StartDate | date:'MMM dd'}} - {{ class.course.Title }}, {{ class.Title }}
+				<i class="glyphicon" ng-class="{'glyphicon-chevron-down': opencourse{{ $index }}, 'glyphicon-chevron-right': !opencourse{{$index}} }"></i></h3>
+				<div class="rightIcons mini" style="margin-top:-30px;width:125px;text-align:left;">
+											<div class="icon {{ class.ClassType | truncate:4 | lowercase }}">
+												<a href="#" tooltip-placement="left" tooltip="Course Type: {{ class.ClassType }}">
+												{{ class.ClassType | truncate:1 }}
+												</a>
+											</div>
+											<div class="icon disc {{ class.course.PrimaryDiscipline | truncate:4 }}">
+											<a href="#" tooltip-placement="left" tooltip="Primary Discipline: {{ class.course.PrimaryDiscipline }}">
+												{{ class.course.PrimaryDiscipline| truncate:1 }}
+											</a>
+											</div>
+											<div ng-repeat="ad in course.AdditionalDisciplines.results">
+												<div class="icon {{ ad | truncate:4 }}">
+												<a href="#" tooltip-placement="left" tooltip="Additional Discipline: {{ ad }}">
+												{{ ad | truncate:1 }}
+												</a>
+												</div>
+											</div>
+										</div>
+
+			</accordion-heading>
+			<div class="courseBody">
+		      <a href="#" class="btn btn-primary go-btn" ng-show="class.Link.Url">Register</a>
+		      <strong>Location: </strong>{{ class.City }} {{ class.Country }} {{ class.Region }}<br />
+		      <strong>Start Date: </strong>{{ class.StartDate | date:'medium' }}<br />
+		      <strong>End Date: </strong>{{ class.EndDate | date:'medium' }}<br />
+			  <br />
+		      <strong>Function: </strong>{{ class.course.CorpFunction }}<br />
+		      <strong>Discipline: </strong>{{ class.course.PrimaryDiscipline }}<br />
+		      <strong>Additional Disciplines:</strong>
+		      <div ng-repeat="ad in class.course.AdditionalDisciplines.results">{{ ad }}</div>
+		      <strong>Skill Level: </strong>{{ class.course.SkillLevel }}<br />
+		      <strong>Type: </strong>{{ class.ClassType }}<br />
+		      <strong>Vendor: </strong>{{ class.Vendor }}<br />
+		      
+		      
+		      <br />
+		      
+		      <p><strong>Class Details: </strong><span ng-bind-html="class.ClassDetails"></span></p>
+		      <p style="line-height:1.2;"><strong>Course Description: </strong><span ng-bind-html="class.course.CourseDescription"></span></p>
+
+			</div>
+		</accordion-group>
+
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-106</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">0bb8ec1d-2bc9-407d-aad3-4a71ff341746</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-106, UMVK2C7JZUWU-1-106</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

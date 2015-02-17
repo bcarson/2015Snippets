@@ -1,0 +1,51 @@
+﻿<accordion close-others="false">
+	<div ng-repeat="course in filteredCourses | filter:{ PrimaryDiscipline:selected } | filter:search | limitTo:limit">
+		<accordion-group is-open="$parent.opencourse{{ $index }}{{ course.Title | truncate: 3 | clean }}">
+			<accordion-heading >
+				<h3 class="courseTitles">{{ course.Title }}
+				<i class="glyphicon" ng-class="{'glyphicon-chevron-down': opencourse{{ $index }}{{ course.Title | truncate: 3 | clean }}, 'glyphicon-chevron-right': !opencourse{{$index}}{{ course.Title | truncate: 3 | clean }} }"></i></h3>
+				<div class="rightIcons mini" style="margin-top:-30px;width:125px;text-align:left;">
+					<div class="icon level {{ course.SkillLevel | truncate:4 | lowercase }}">
+						<a href="#" tooltip-placement="left" tooltip="Skill Level: {{ course.SkillLevel }}">
+						{{ course.SkillLevel | truncate:1 }}</a>
+					</div>
+					<div class="icon disc {{ course.PrimaryDiscipline | truncate:4 }}">
+						<a href="#" tooltip-placement="left" tooltip="Primary Discipline: {{ course.PrimaryDiscipline }}">
+						{{ course.PrimaryDiscipline| truncate:1 }}</a>
+					</div>
+					<div ng-repeat="ad in course.AdditionalDisciplines | limitTo:2">
+						<div class="icon disc {{ ad | truncate:4 }}">
+						<a href="#" tooltip-placement="left" tooltip="Additional Discipline: {{ ad }}">
+						{{ ad | truncate:1 }}</a>
+						</div>
+					</div>
+				</div>
+
+			</accordion-heading>
+			<div class="courseBody">
+				<!--<a href="#" class="btn btn-primary go-btn" ng-click="findclasses(course.Title)">Find Upcoming Classes</a>-->
+				<strong>Skill Level: </strong>{{ course.SkillLevel }}<br />
+				<strong>Discipline: </strong>{{ course.PrimaryDiscipline }}<br />
+				<strong>Function: </strong>{{ course.CorpFunction }}<br />
+				<div ng-show="course.AdditionalDisciplines.length"><strong>Additional Disciplines:</strong>
+				<div ng-repeat="ad in course.AdditionalDisciplines">{{ ad }}</div></div>
+				<br />
+				<div  ng-show="course.CourseDescription"><br /><strong>Description: </strong><span ng-bind-html="course.CourseDescription"></span>
+				<br /><br /></div>
+				<div ng-show="course.TargetAudience"><strong>Target Audience: </strong><span ng-bind-html="course.TargetAudience"></span>
+				<br /><br /></div>
+				<strong ng-show="course.LearningObjectives">Learning Objectives: </strong><span ng-bind-html="course.LearningObjectives"></span>
+
+			</div>
+		</accordion-group>
+	</div>
+	<h3 class="courseTitles" ng-click="limit=500" ng-hide="(filteredCourses | filter:{ PrimaryDiscipline:selected }).length < limit"><strong>Show More</strong></h3>
+</accordion><html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-103</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">0d187a2c-3284-4630-9086-4c6a4cfce9a3</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-103, UMVK2C7JZUWU-1-103</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

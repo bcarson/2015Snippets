@@ -1,0 +1,251 @@
+﻿<!-- ###################################### 
+    			Begin Tab - Calendar
+    	########################################### -->
+		
+				
+<results />
+<div><accordion close-others="false">
+	<accordion-group is-open="$parent.thismonth" ng-show="thismonth" ng-hide="behavior.classview"> 
+		<accordion-heading ng-init="limit=10">
+			<h2 class="discTitles">{{ date.thisMonth.string + ' ' + date.thisMonth.year }} 
+			<i class="glyphicon" ng-class="{'glyphicon-chevron-down': thismonth, 'glyphicon-chevron-right': !thismonth }"></i></h2>
+			<div ng-init="current=thismonth" />
+		</accordion-heading>
+		<accordion close-others="false">
+			<div ng-repeat="class in filteredClasses | filter:{ current: 'thisMonth' } | orderBy:'StartDate' | limitTo:limit">
+				<class />
+			</div>
+			
+		</accordion>
+		<h3 class="courseTitles" ng-click="limit=500" ng-hide="limit > 10"><strong>Show All</strong></h3>
+	</accordion-group>
+	
+	<accordion-group is-open="$parent.nextmonth" ng-hide="behavior.classview"> 
+		<accordion-heading ng-init="limit=10">
+			<h2 class="discTitles">{{ date.nextMonth.string + ' ' + date.nextMonth.year }} 
+			<i class="glyphicon" ng-class="{'glyphicon-chevron-down': nextmonth, 'glyphicon-chevron-right': !nextmonth }"></i></h2>
+			<div ng-init="current=thismonth" />
+		</accordion-heading>
+		<accordion close-others="false">
+			<div ng-repeat="class in filteredClasses | filter:{ current: 'nextMonth' } | orderBy:'StartDate' | limitTo:limit">
+				<class />
+			</div>
+			
+		</accordion>
+		<h3 class="courseTitles" ng-click="limit=500" ng-hide="limit > 10"><strong>Show All</strong></h3>
+	</accordion-group>
+	
+	<accordion-group is-open="$parent.monthafter" ng-hide="behavior.classview"> 
+		<accordion-heading ng-init="limit=10">
+			<h2 class="discTitles">{{ date.monthAfter.string + ' ' + date.monthAfter.year }} 
+			<i class="glyphicon" ng-class="{'glyphicon-chevron-down': monthafter, 'glyphicon-chevron-right': !monthafter }"></i></h2>
+			<div ng-init="current=thismonth" />
+		</accordion-heading>
+		<accordion close-others="false">
+			<div ng-repeat="class in filteredClasses | filter:{ current: 'monthAfter' } | orderBy:'StartDate' | limitTo:limit">
+				<class />
+			</div>
+			
+		</accordion>
+		<h3 class="courseTitles" ng-click="limit=500" ng-hide="limit > 10"><strong>Show All</strong></h3>
+	</accordion-group>
+	<accordion-group is-open="$parent.showall.open" ng-click="behavior.showall()"> 
+		<accordion-heading ng-init="limit=10">
+			<h2 class="discTitles">Show All Dates 
+			<i class="glyphicon" ng-class="{'glyphicon-chevron-down': showall.open, 'glyphicon-chevron-right': !showall.open }"></i></h2>
+			<div ng-init="current=thismonth" />
+		</accordion-heading>
+		<accordion close-others="false">
+			<div ng-repeat="class in filteredClasses | filter:{ current: '!past' } | orderBy:'StartDate'">
+				<class />
+			</div>
+			
+		</accordion>
+	</accordion-group>
+
+</accordion></div>
+
+		
+		
+		<!-- <div id="fullCalendar">
+	        <h2 class="searchResults dateBar">
+	        <span style="float:left;height:20px;">Searching for: {{ search }} {{ findclass }}</span>
+   			<span ng-repeat="d in searchfilters.disc" class="searchResults">{{ d }}<a href="#" class="clear" ng-click="splice(searchfilters.disc, d)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+			<span ng-repeat="l in searchfilters.level" class="searchResults">{{ l }}<a href="#" class="clear" ng-click="splice(searchfilters.level, l)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+	        <span ng-show="searchfilters.date" class="searchResults">Start Date {{ searchfilters.date }}
+	        	<a href="#" class="clear" ng-click="searchfilters.date=''"><i class="glyphicon glyphicon-remove"></i></a></span>
+	        <span ng-repeat="t in searchfilters.type" class="searchResults">{{ t }}<a href="#" class="clear" ng-click="splice(searchfilters.type, t)">
+	        <i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+			<span ng-repeat="l in searchfilters.loc" class="searchResults">{{ l }}<a href="#" class="clear" ng-click="splice(searchfilters.loc, l)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+	        
+	        <a href="#" ng-click="clear()" class="clear" style="font-size:0.8em;">Clear Filters<i class="glyphicon glyphicon-remove"></i></a>
+	        <div class="clearfix"></div>
+			</h2>
+			<div class="clearfix"></div>
+	        <div class="panel-group" id="accordion">
+				  <div class="panel panel-default" ng-repeat="m in theDate.months">				    <div class="panel-heading">
+				      <h2 class="panel-title dateBar">
+				        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ displayMonth[m.month] }}" href="#">{{ displayMonth[m.month] }} {{ m.phrase }} <i class="glyphicon glyphicon-chevron-down"></i></a>
+				      </h2>
+				    </div>
+				    				    <div id="{{ displayMonth[m.month] }}" class="panel-collapse collapse in courses {{ m.current }}">
+				      <div class="panel-body primary">
+				      <h3>{{ wait }}</h3>
+			            <ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+			            	<li ng-hide="(classes | filter:m.current | filter:search | filter:findclass).length" style="padding:0 15px;">No Classes Found</li>
+
+							<li ng-repeat="class in filteredClasses | filter:m.current | filter:search | filter:findclass | orderBy:'StartDate'" class="one" ng-class-even="'even'">
+					        	<div class="panel-group" id="accordionCourses">
+								  <div class="panel panel-default innerPanel">
+								    <div class="panel-heading" id="GREtitle">
+								      <h2 class="panel-title">
+								        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ class.Id }}{{ $index }}" href="#">
+								        {{ class.StartDate | date:'MMM dd' }} {{ class.City }} - {{ class.Title }}, {{ class.course.Title }}
+								        <i class="glyphicon glyphicon-chevron-down"></i></a>
+								      
+							<div class="rightIcons mini" style="margin-top:0;width:125px;text-align:left;">
+							    <div class="icon {{ class.ClassType | truncate:4 }}">{{ class.ClassType | truncate:1 }}
+							    	<div class="iconHover">Class Type: {{ class.ClassType }}</div>
+							    </div>
+							    <div class="icon {{ class.course.PrimaryDiscipline | truncate:4 }}">
+							    {{ class.course.PrimaryDiscipline| truncate:1 }}
+							    	<div class="iconHover">Primary Discipline: {{ class.course.PrimaryDiscipline }}</div>
+							    </div>
+							    <div ng-repeat="ad in class.course.AdditionalDisciplines.results">
+							    <div class="icon {{ ad | truncate:4 }}">{{ ad | truncate:1 }}
+							    	<div class="iconHover">Additional Discipline: {{ ad }}</div>
+							    </div>
+							    </div>	
+							</div>
+
+								      </h2>
+								    </div>
+								    <div id="{{ class.Id }}{{ $index }}" class="panel-collapse collapse">
+								      <div class="panel-body">
+								      <a href="#" class="btn btn-primary go-btn" ng-show="class.Link.Url">Register</a>
+								      <strong>Location: </strong>{{ class.City }} {{ class.Country }} {{ class.Region }}<br />
+								      <strong>Start Date: </strong>{{ class.StartDate | date:'fullDate' }}<br />
+								      <strong>End Date: </strong>{{ class.EndDate | date:'fullDate' }}<br />
+									  <br />
+								      <strong>Function: </strong>{{ class.course.CorpFunction }}<br />
+								      <strong>Discipline: </strong>{{ class.course.PrimaryDiscipline }}<br />
+								      <strong>Additional Disciplines:</strong>
+								      <div ng-repeat="ad in class.course.AdditionalDisciplines.results">{{ ad }}</div>
+								      <strong>Skill Level: </strong>{{ class.course.SkillLevel }}<br />
+								      <strong>Type: </strong>{{ class.ClassType }}<br />
+								      <strong>Vendor: </strong>{{ class.Vendor }}<br />
+								      
+								      
+								      <br />
+								      
+								      <p><strong>Class Details: </strong><span ng-bind-html="class.ClassDetails"></span></p>
+								      <p style="line-height:1.2;"><strong>Course Description: </strong><span ng-bind-html="class.course.CourseDescription"></span></p>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+
+
+							</li>
+						</ul>
+						
+
+				      </div>
+				    </div>
+				  </div>
+				  
+				  
+				  <div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h2 class="panel-title dateBar">
+				        <a class="accordion-toggle" data-toggle="collapse" data-target="#showAll" href="#" ng-click="collapsecal()">Show All Upcoming Classes <i class="glyphicon glyphicon-chevron-down"></i></a>
+				      </h2>
+				    </div>
+				    <div ng-hide="(classes | filter:m.current | filter:search | filter:findclass).length" style="padding:15px;">No Classes Found</div>
+				    <div id="showAll" class="panel-collapse collapse courses {{ m.current }}">
+				      <div class="panel-body primary">
+				      <h3>{{ wait }}</h3>
+			            <ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+			            	
+							<li ng-repeat="class in filteredClasses | filter: {current:'!past' } | filter:search | filter:findclass | orderBy:'StartDate'" class="one" ng-class-even="'even'">
+							
+					        	<div class="panel-group" id="accordionCourses">
+								  <div class="panel panel-default innerPanel">
+								    <div class="panel-heading" id="GREtitle">
+								      <h2 class="panel-title">
+								        <a class="accordion-toggle" data-toggle="collapse" data-target="#a{{ class.Id }}{{ $index }}" href="#">
+								        {{ class.StartDate | date:'MMM dd' }} {{ class.City }} - {{ class.Title }}, {{ class.course.Title }}
+								        <i class="glyphicon glyphicon-chevron-down"></i></a>
+							<div class="rightIcons mini" style="margin-top:0;width:125px;text-align:left;">
+							    <div class="icon {{ class.ClassType | truncate:4 }}">{{ class.ClassType | truncate:1 }}
+							    	<div class="iconHover">Class Type: {{ class.ClassType }}</div>
+							    </div>
+							    <div class="icon {{ class.course.PrimaryDiscipline | truncate:4 }}">
+							    {{ class.course.PrimaryDiscipline| truncate:1 }}
+							    	<div class="iconHover">Primary Discipline: {{ class.course.PrimaryDiscipline }}</div>
+							    </div>
+							    <div ng-repeat="ad in class.course.AdditionalDisciplines.results">
+							    	<div class="icon {{ ad | truncate:4 }}">{{ ad | truncate:1 }}
+							    		<div class="iconHover">Additional Discipline: {{ ad }}</div>
+							    	</div>
+							    </div>
+							</div>
+
+								      </h2>
+								    </div>
+								    <div id="a{{ class.Id }}{{ $index }}" class="panel-collapse collapse">
+								      <div class="panel-body">
+								      <a href="#" class="btn btn-primary go-btn" ng-show="class.Link.Url">Register</a>
+								      <strong>Location: </strong>{{ class.City }} {{ class.Country }} {{ class.Region }}<br />
+								      <strong>Start Date: </strong>{{ class.StartDate | date:'fullDate' }}<br />
+								      <strong>End Date: </strong>{{ class.EndDate | date:'fullDate' }}<br />
+									  <br />
+								      <strong>Function: </strong>{{ class.course.CorpFunction }}<br />
+								      <strong>Discipline: </strong>{{ class.course.PrimaryDiscipline }}<br />
+								      <strong>Additional Disciplines:</strong>
+								      <div ng-repeat="ad in class.course.AdditionalDisciplines.results">{{ ad }}</div>
+								      <strong>Skill Level: </strong>{{ class.course.SkillLevel }}<br />
+								      <strong>Type: </strong>{{ class.ClassType }}<br />
+								      <strong>Vendor: </strong>{{ class.Vendor }}<br />
+								      
+								      
+								      <br />
+								      
+
+								      <p><strong>Class Details: </strong><span ng-bind-html="class.ClassDetails"></span></p>
+								      <p style="line-height:1.2;"><strong>Course Description: </strong><span ng-bind-html="class.course.CourseDescription"></span></p>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+
+
+							</li>
+						</ul>
+						
+							<a href="#" style="float:right;" onclick="updateListItem()">Update List Item</a>
+
+				      </div>
+				    </div>
+				  </div>
+				  
+				  
+				</div>
+		         </div>
+-->		        
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-100</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">fe962608-66ea-4c7b-810e-2fb3483b7def</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-100, UMVK2C7JZUWU-1-100</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>

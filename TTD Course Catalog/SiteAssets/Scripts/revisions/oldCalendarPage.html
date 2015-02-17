@@ -1,0 +1,614 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-1-107</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">44693e09-769b-4262-9aa2-18778d1c6e39</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-1-107, UMVK2C7JZUWU-1-107</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body id="catalog">
+<div xmlns:ng="http://angularjs.org" ng-app="calendar" id="wrapper" class="calendar" resize>
+     
+    <div id="fluidDiv" class="container" data-ng-controller="calendarController">
+
+    	<!-- ###################################### 
+    		Header Section with Search Filters
+    	########################################### -->
+		<div class="jumbotron">		
+			<p id="message" class="col-med-3 col-sm-12">
+			initializing...
+			</p>
+			
+			<input ng-model="search" type="text" class="form-control search col-med-3 col-sm-12" placeholder="Start typing to search..." ng-change="searchingcourses()" />
+			<br />			
+			<div class="accordion search-options" id="accordion1">
+				<div class="accordion-group">
+					<div class="accordion-heading pull-right col-med-3" id="searchMain" >
+						<a class="accordion-toggle search" data-toggle="collapse" data-parent="#accordion2" href="#collapseMain" ng-click="showFilters()">
+						Search Options<i class="glyphicon glyphicon-chevron-down"></i>				
+						</a>
+					</div>
+						
+					<div id="collapseMain" class="accordion-body collapse in" >
+						<div class="accordion-inner" style="height:35px;width:100%;margin-top:-4px;">
+
+							<div class="accordion" id="accordion2">
+							      <div class="accordion-group searchGroup">
+							        <div class="accordion-heading"><!-- Discipline Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+							          Discipline<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseOne" class="accordion-body collapse" style="padding-top:5px;">
+							          <div class="accordion-inner" ng-repeat="disc in Disciplines | orderBy:order">
+							          	<div class="checkboxes">
+											<input class="{{ disc.name | clean }} checkBox" type="checkbox" ng-true-value="{{ disc.name }}" ng-false-value="" 
+											ng-click="searchfilters.checkDisc(disc.name)"/>
+											<span class="icon checkbox disc {{ disc.name | truncate:4 }}">{{ disc.name | truncate:1 }}</span>
+											<span class="title"> {{ disc.name }}</span>
+										</div>
+							          </div>
+							          <span class="checkboxFooter">(Filters Global Course List)</span>
+							        </div>
+							      </div>
+							      
+							     
+							      <div class="accordion-group searchGroup">
+							        <div class="accordion-heading"><!-- Skill Level Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+							            Skill Level<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseTwo" class="accordion-body collapse" style="padding-top:5px;">
+							          <div class="accordion-inner">
+							         <div ng-repeat="skill in SkillLevel | orderBy:'order'">
+							          	<div class="checkboxes">
+											
+											<input class="{{ skill.name | clean }} checkBox" type="checkbox" ng-true-value="{{ skill }}" 
+											ng-false-value="" ng-click="searchfilters.checkSkill(skill)"/>
+											<span class="icon checkbox level {{ skill.name | truncate:4 }}">{{ skill.name | truncate:1 }}</span>
+											<span class="title"> {{ skill.name }}<br/></span>
+										</div>
+							          </div>
+							          </div>
+							          <span class="checkboxFooter">(Filters Global Course List)</span>							          
+							        </div>
+							      </div>
+							    
+							    
+							          <div class="accordion-group searchGroup">
+							        <div class="accordion-heading"><!-- Course Type Checkbox Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+							            Course Type<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseThree" class="accordion-body collapse">
+							          <div class="accordion-inner">
+							            <div ng-repeat="type in ClassType | orderBy:'toString()'">
+							          	<div class="checkboxes">
+											<input class="{{ type | clean }} checkBox" type="checkbox" ng-true-value="{{ type }}" 
+											ng-false-value="" ng-click="searchfilters.checkType(type)"/>
+											<span class="icon checkbox type {{ type | clean | truncate:4 }}">{{ type | truncate:1 }}</span>
+											<span class="title"> {{ type }}</span>										</div>
+							          </div>
+							          </div>
+							          <span class="checkboxFooter">(Filters Courses by Date)</span>							          
+							        </div>
+							      </div>
+							
+    							  <div class="accordion-group searchGroup drop">
+							        <div class="accordion-heading"><!-- Location Filter -->
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+							           Location<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseFour" class="accordion-body collapse">
+							        	<div class="accordion-inner">
+										  <div ng-repeat="loc in Locations">
+											<div class="checkboxes">
+												<input class="{{ loc | clean }} checkBox" type="checkbox" ng-true-value="{{ loc }}" 
+												ng-false-value="" ng-click="searchfilters.checkLocation(loc)"/>
+												
+												<span class="title" style="padding-left:5px;"> {{ loc }}</span>										
+								          </div>
+										 </div>
+										</div>
+							          <span class="checkboxFooter">(Filters Courses by Date)</span>										
+							        </div>
+							      </div>
+
+								  <div class="accordion-group searchGroup drop">
+							        <div class="accordion-heading">
+							          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFive">
+							            Start Date<i class="glyphicon glyphicon-chevron-down"></i>
+							          </a>
+							        </div>
+							        <div id="collapseFive" class="accordion-body collapse">
+							          <div class="accordion-inner">
+							          		<input name="start" type="date" class="form-control" id="startDate" ng-model="searchfilters.date" ng-change="searchingclasses()"/>
+							          </div>
+							          <span class="checkboxFooter">(Filters Courses by Date)</span>							          
+							        </div>
+							      </div>
+
+						<div class="accordion-heading expand drop"><a href="#" ng-click="expand()">Expand All<i class="glyphicon glyphicon-print"></i></a></div>
+						<div class="accordion-heading collapse drop"><a href="#" ng-click="collapse()">Collapse All<i class="glyphicon glyphicon-print"></i></a></div>
+						</div>
+						</div><!-- END #collapseMain .accordion-inner -->
+					</div><!-- END #collapseMain -->
+				</div><!-- END .accordion-group -->
+			</div> <!-- End Search Options -->
+
+		</div><!-- END .jumbotron -->
+		<div class="clearfix" style="height:1px;"></div>
+
+    	<!-- ###################################### 
+    			Begin Tabbed Content Area
+    	########################################### -->
+		
+		<ul class="nav nav-tabs nav-justified">
+			<!-- #### Hidden while waiting on content ####
+			<li class="home"><a href="#home" data-toggle="tab"><h4>Catalog Home</h4></a></li>
+			<li class="overviews"><a href="#overviews" data-toggle="tab"><h4>Discipline Overviews</h4></a></li>
+					#### #### #### #### #### #### -->
+			<li class="globalList active"><a href="#global" data-toggle="tab"><h4>Global Course List</h4></a></li>
+			<li class="calendar"><a href="#calendar" data-toggle="tab"><h4>Courses by Date</h4></a></li>
+
+		</ul>
+		<div id="content" class="tab-content" style="text-align:left;padding-top:0;">
+		
+		
+		
+		<!-- #### Hidden while waiting on content 
+		<div class="tab-pane active" id="home">
+    	<!-- ###################################### 
+    			Begin Tab - Catalog Home
+    	########################################### 
+    			
+	        <div class="well well-lg">
+	        <h1>Welcome to the Global Course Catalog</h1>
+	        <h2>Catalog Purpose</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu nisl ante. Nunc blandit rutrum feugiat. In id dui ac sapien consequat sodales a nec quam. Etiam lorem lacus, alique</p><br /><br />
+			<img src="../SiteAssets/Images/Ryan_Lance.jpg" class="ryan" />
+			<h2 style="margin-top:0;">Executive Message from Ryan</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent mi arcu, sollicitudin quis lectus eget, consequat vulputate ipsum. Aliquam mollis varius lectus at ullamcorper. Quisque pulvinar sem metus, in condimentum nibh facilisis ut. Morbi a lorem fringilla, molestie libero ac, luctus metus. Vivamus facilisis, augue vitae varius aliquet, metus diam volutpat dui, ac molestie nisl dolor eget nisl. Suspendisse cursus, justo in luctus commodo, mauris odio dapibus massa, sed mollis massa metus non diam. Etiam vitae hendrerit tortor. Donec dolor arcu, blandit fermentum ipsum eget, semper dapibus diam. Sed sit amet lobortis leo. Suspendisse vestibulum augue non orci bibendum ultricies.</p>
+ 
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget ante non enim luctus tempus. Nullam consectetur convallis metus et rutrum. Quisque dictum tellus purus, ut gravida quam pulvinar quis. Nullam et nulla tellus. Nullam urna massa, suscipit gravida ullamcorper sit amet, porttitor id massa. Sed sit amet interdum diam.</p>
+			<div class="clearfix"></div>
+			</div>
+		</div><!-- end #home Tab --><!--
+
+      <div class="tab-pane" id="overviews">
+    	<!-- ###################################### 
+    			Begin Tab - Browse Discipline
+    	########################################### --><!--
+    	
+        <div class="well well-lg">
+        <h1>Conoco Phillips Disciplines</h1>
+        <div class="discipline" id="GRE">
+        	<a href="#" class="show">
+		        <img class="discimg" src="../SiteAssets/Images/Ken_Tubman.jpg" />
+		        <h2>Geosciences and Reservoir Engineering</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu nisl ante. Nunc blandit rutrum feugiat. 
+				In id dui ac sapien consequat sodales a nec quam. Etiam lorem lacus, aliquet</p>
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+				<!-- ###### Detail Page for Geosciences & Reservoir Engineering ######--><!--
+				<div class="selectDiscipline well well-lg">
+					<a class="back"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+					<h2>Geosciences and Reservoir Engineering</h2>
+					<div class="disc-detail-right">
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" /><br /><br />
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" />
+					</div>
+					<ul class="disc-detail-ul">
+						<li>About the Geosciences and Reservoir Engineering Discpline</li>
+						<li>Who Supports Geosciences and Reservoir Engineering Learning and Development</li>
+						<li>Geosciences and Reservoir Engineering Resources and Web Links</li>
+					</ul>
+					<div class="clearfix"></div>
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Geosciences Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Reservoir Engineering Courses</a>
+				
+				
+					
+				</div>
+		</div><!-- ###### END Geosciences and Reservoir Engineering ###### --><!--
+		
+		
+		<div class="discipline" id="GW"><a href="#" class="show">
+	        <img class="discimg" src="../SiteAssets/Images/Glenn_Schaaf.jpg" />
+	        <h2>Global Wells</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu nisl ante. Nunc blandit rutrum feugiat. 
+			In id dui ac sapien consequat sodales a nec quam. Etiam lorem lacus, aliquet</p>
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+				<!-- ###### Detail Page for Global Wells ######--><!--
+				<div class="selectDiscipline well well-lg">
+					<a class="back"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+					<h2>Global Wells</h2>
+					<div class="disc-detail-right">
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" /><br /><br />
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" />
+					</div>
+					<ul class="disc-detail-ul">
+						<li>About the Global Wells Discpline</li>
+						<li>Who Supports Global Wells Learning and Development</li>
+						<li>Global Wells Resources and Web Links</li>
+					</ul>
+					<div class="clearfix"></div>
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Drilling Engineering Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Completions Engineering Courses</a><br />
+
+				</div>
+		</div>
+
+        <div class="discipline" id="GP"><a href="#" class="show">
+	        <img class="discimg" src="../SiteAssets/Images/Perry_Berkenpas.jpg" />
+	        <h2>Global Production</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu nisl ante. Nunc blandit rutrum feugiat. 
+			In id dui ac sapien consequat sodales a nec quam. Etiam lorem lacus, aliquet</p>
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+				<!-- ###### Detail Page for Global Production ######--><!--
+				<div class="selectDiscipline well well-lg">
+					<a class="back"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+					<h2>Global Production</h2>
+					<div class="disc-detail-right">
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" /><br /><br />
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" />
+					</div>
+					<ul class="disc-detail-ul">
+						<li>About the Global Production Discpline</li>
+						<li>Who Supports Global Production Learning and Development</li>
+						<li>Global Production Resources and Web Links</li>
+					</ul>
+					<div class="clearfix"></div>
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Production Engineering Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Facilities Engineering Courses</a><br />
+				</div>
+
+		</div>
+
+
+        <div class="discipline" id="LD"><a href="#" class="show">
+	        <img class="discimg" src="../SiteAssets/Images/Eric_Paul.jpg" />
+	        <h2>Leadership and Development</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu nisl ante. Nunc blandit rutrum feugiat. 
+			In id dui ac sapien consequat sodales a nec quam. Etiam lorem lacus, aliquet</p>
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+				<!-- ###### Detail Page for Leadership and Development ######--><!--
+				<div class="selectDiscipline well well-lg">
+					<a class="back"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>
+					<h2>Leadership and Development</h2>
+					<div class="disc-detail-right">
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" /><br /><br />
+						<img class="discimg" src="../SiteAssets/Images/blank_profile.png" />
+					</div>
+					<ul class="disc-detail-ul">
+						<li>About the Leadership and Development Discpline</li>
+						<li>Who Supports Leadership and Development Learning</li>
+						<li>Leadership and Development Resources and Web Links</li>
+					</ul>
+					<div class="clearfix"></div>
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse New Hire Training Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Individual Development Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Supervisor Development Courses</a><br />
+					<a class="btn btn-primary disc-btn" href="#global" data-toggle="tab">Browse Instructor Development Courses</a><br />
+				</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+        </div><!-- end .well --><!--
+      </div><!-- end #cat Tab -->
+
+
+      <div class="tab-pane active" id="global">
+    	<!-- ###################################### 
+    			Begin Tab - Global Course List
+    	########################################### -->
+		<div id="fullCalendar">
+			<h2 class="dateBar" style="text-align:center;padding:50px;margin-top:0;"ng-hide="courses.length">Please wait...loading Global Course Catalog.<br /><br /><br />
+			<span id="spinner"></span><br /><br />(this may take up to a minute)</h2>
+	        <h2 class="searchResults dateBar">
+	        <span style="float:left;height:20px;">Searching for: <span style="font-size:0.9em;">{{ search }} </span> <a href="" class="clear" ng-show="search" ng-click="search=''"><i class="glyphicon glyphicon-remove"></i></a><br /></span>
+	        <div>
+		        <span ng-repeat="d in searchfilters.disc" style="margin:-3px 5px 0;padding:5px;display:block;float:left;width:auto;position:relative;font-size:0.9em;">					{{ d }}<a href="#" class="clear" ng-click="splice(searchfilters.disc, d)"><i class="glyphicon glyphicon-remove"></i></a>
+		        </span>
+	        </div>
+	        <div>
+		        <span ng-repeat="s in searchfilters.skill" style="margin:-3px 5px 0;padding:5px;display:block;float:left;width:auto;position:relative;font-size:0.9em;">					{{ s.name }}<a href="#" class="clear" ng-click="splice(searchfilters.skill, s)"><i class="glyphicon glyphicon-remove"></i></a>
+		        </span>
+	        </div>
+			<a href="#" ng-click="clear()" class="clear" style="font-size:0.8em;">Clear Filters<i class="glyphicon glyphicon-remove"></i></a>
+
+			</h2>
+			<div class="clearfix"></div>
+	        <div class="panel-group" id="accordion">
+				  <div class="panel panel-default" ng-repeat="disc in Disciplines | orderBy:'order'" 
+				  ng-show="(courses | filter:selected | filter:search | courseoptions:searchfilters).length"><!-- Global Course List -->
+				    <div class="panel-heading" ng-init="selected = disc.name">
+				      <h2 class="dateBar panel-title {{ disc.name | truncate:4 }}">
+				        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ disc.name | clean }}" href="#">{{ disc.func }} - {{ disc.name }}<i class="glyphicon glyphicon-chevron-down"></i></a>
+				      </h2>
+				    </div>
+				    <div id="{{ disc.name | clean }}" class="panel-collapse collapse courses">
+				      <div class="panel-body primary">
+				      <h3>{{ wait }}</h3>
+			            <ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+							<li ng-repeat="course in courses | filter:selected | filter:search | courseoptions:searchfilters | orderBy:'toString()'" class="one" ng-class-even="'even'">
+							
+					        	<div class="panel-group" id="accordionCourses">
+								  <div class="panel panel-default innerPanel"><!-- Global Course List -->
+								    <div class="panel-heading" id="GREtitle">
+								      <h2 class="panel-title">
+								        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ disc.name | clean }}{{ $index }}" href="#">{{ course.Title }} - {{ course.SkillLevel }}<i class="glyphicon glyphicon-chevron-down"></i></a>
+							<div class="rightIcons mini" style="margin-top:0;width:125px;text-align:left;">
+								<div class="icon level {{ course.SkillLevel | truncate:4 | lowercase }}">{{ course.SkillLevel | truncate:1 }}
+									<div class="iconHover">Skill Level: {{ course.SkillLevel }}</div>
+								</div>
+							    <div class="icon {{ course.PrimaryDiscipline | truncate:4 }}">
+							    {{ course.PrimaryDiscipline| truncate:1 }}
+							    	<div class="iconHover">Primary Discipline: {{ course.PrimaryDiscipline }}</div>
+							    </div>
+							 <div ng-repeat="ad in course.AdditionalDisciplines.results">
+							 	<div class="icon {{ ad | truncate:4 }}">{{ ad | truncate:1 }}
+							 		<div class="iconHover">Additional Discipline: {{ ad }}</div>
+							 	</div>
+							 </div>
+							    
+
+							</div>
+					        
+								      </h2>
+								    </div>
+								    <div id="{{ disc.name | clean }}{{ $index }}" class="panel-collapse collapse">
+								      <div class="panel-body">
+								      <a href="#" class="btn btn-primary go-btn" ng-click="findclasses(course.Title)">Find Upcoming Classes</a>
+								      <strong>Skill Level: </strong>{{ course.SkillLevel }}<br />
+								      <strong>Discipline: </strong>{{ course.PrimaryDiscipline }}<br />
+								      <strong>Function: </strong>{{ course.CorpFunction }}<br /><strong>Additional Disciplines:</strong>
+								      <div ng-repeat="ad in course.AdditionalDisciplines.results">{{ ad }}</div><br /><br />
+								      <strong>Description: </strong><span ng-bind-html="course.CourseDescription"></span>
+								      </div><!-- END .panel-body -->
+								    </div><!-- END .panel-collapse -->
+								  </div><!-- END .panel -->
+								</div><!-- END #accordionGRE -->
+
+
+							</li>
+						</ul>
+						<!-- ******* -->
+
+				      </div>
+				    </div>
+				  </div>
+				  
+				</div><!-- end .panel-group -->
+
+		         </div><!-- end #fullCalendar -->
+
+        
+      </div><!-- end #global Tab -->
+
+		<div class="tab-pane" id="calendar">
+    	<!-- ###################################### 
+    			Begin Tab - Calendar
+    	########################################### -->
+		
+		<div id="fullCalendar">
+	        <h2 class="searchResults dateBar">
+	        <span style="float:left;height:20px;">Searching for: {{ search }} {{ findclass }}</span>
+   			<span ng-repeat="d in searchfilters.disc" class="searchResults">{{ d }}<a href="#" class="clear" ng-click="splice(searchfilters.disc, d)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+			<span ng-repeat="l in searchfilters.level" class="searchResults">{{ l }}<a href="#" class="clear" ng-click="splice(searchfilters.level, l)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+	        <span ng-show="searchfilters.date" class="searchResults">Start Date {{ searchfilters.date }}
+	        	<a href="#" class="clear" ng-click="searchfilters.date=''"><i class="glyphicon glyphicon-remove"></i></a></span>
+	        <span ng-repeat="t in searchfilters.type" class="searchResults">{{ t }}<a href="#" class="clear" ng-click="splice(searchfilters.type, t)">
+	        <i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+			<span ng-repeat="l in searchfilters.loc" class="searchResults">{{ l }}<a href="#" class="clear" ng-click="splice(searchfilters.loc, l)">
+			<i class="glyphicon glyphicon-remove"></i></a>
+		    </span>
+	        
+	        <a href="#" ng-click="clear()" class="clear" style="font-size:0.8em;">Clear Filters<i class="glyphicon glyphicon-remove"></i></a>
+	        <div class="clearfix"></div>
+			</h2>
+			<div class="clearfix"></div>
+	        <div class="panel-group" id="accordion">
+				  <div class="panel panel-default" ng-repeat="m in theDate.months"><!-- Courses by Date -->
+				    <div class="panel-heading">
+				      <h2 class="panel-title dateBar">
+				        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ displayMonth[m.month] }}" href="#">{{ displayMonth[m.month] }} {{ m.phrase }} <i class="glyphicon glyphicon-chevron-down"></i></a>
+				      </h2>
+				    </div>
+				    				    <div id="{{ displayMonth[m.month] }}" class="panel-collapse collapse in courses {{ m.current }}">
+				      <div class="panel-body primary">
+				      <h3>{{ wait }}</h3>
+			            <ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+			            	<li ng-hide="(classes | filter:m.current | filter:search | filter:findclass | classoptions:searchfilters | courseoptions:searchfilters).length" style="padding:0 15px;">No Classes Found</li>
+
+							<li ng-repeat="class in classes | filter:m.current | filter:search | filter:findclass | classoptions:searchfilters | courseoptions:searchfilters | orderBy:'StartDate'" class="one" ng-class-even="'even'">
+					        	<div class="panel-group" id="accordionCourses">
+								  <div class="panel panel-default innerPanel">
+								    <div class="panel-heading" id="GREtitle">
+								      <h2 class="panel-title">
+								        <a class="accordion-toggle" data-toggle="collapse" data-target="#{{ class.Id }}{{ $index }}" href="#">
+								        {{ class.StartDate | date:'MMM dd' }} {{ class.City }} - {{ class.Title }}, {{ class.course.Title }}
+								        <i class="glyphicon glyphicon-chevron-down"></i></a>
+								      
+							<div class="rightIcons mini" style="margin-top:0;width:125px;text-align:left;">
+							    <div class="icon {{ class.ClassType | truncate:4 }}">{{ class.ClassType | truncate:1 }}
+							    	<div class="iconHover">Class Type: {{ class.ClassType }}</div>
+							    </div>
+							    <div class="icon {{ class.course.PrimaryDiscipline | truncate:4 }}">
+							    {{ class.course.PrimaryDiscipline| truncate:1 }}
+							    	<div class="iconHover">Primary Discipline: {{ class.course.PrimaryDiscipline }}</div>
+							    </div>
+							    <div ng-repeat="ad in class.course.AdditionalDisciplines.results">
+							    <div class="icon {{ ad | truncate:4 }}">{{ ad | truncate:1 }}
+							    	<div class="iconHover">Additional Discipline: {{ ad }}</div>
+							    </div>
+							    </div>	
+							</div>
+
+								      </h2>
+								    </div>
+								    <div id="{{ class.Id }}{{ $index }}" class="panel-collapse collapse">
+								      <div class="panel-body">
+								      <a href="#" class="btn btn-primary go-btn" ng-show="class.Link.Url">Register</a>
+								      <strong>Location: </strong>{{ class.City }} {{ class.Country }} {{ class.Region }}<br />
+								      <strong>Start Date: </strong>{{ class.StartDate | date:'fullDate' }}<br />
+								      <strong>End Date: </strong>{{ class.EndDate | date:'fullDate' }}<br />
+									  <br />
+								      <strong>Function: </strong>{{ class.course.CorpFunction }}<br />
+								      <strong>Discipline: </strong>{{ class.course.PrimaryDiscipline }}<br />
+								      <strong>Additional Disciplines:</strong>
+								      <div ng-repeat="ad in class.course.AdditionalDisciplines.results">{{ ad }}</div>
+								      <strong>Skill Level: </strong>{{ class.course.SkillLevel }}<br />
+								      <strong>Type: </strong>{{ class.ClassType }}<br />
+								      <strong>Vendor: </strong>{{ class.Vendor }}<br />
+								      
+								      
+								      <br />
+								      
+								      <p><strong>Class Details: </strong><span ng-bind-html="class.ClassDetails"></span></p>
+								      <p style="line-height:1.2;"><strong>Course Description: </strong><span ng-bind-html="class.course.CourseDescription"></span></p>
+								      </div><!-- END .panel-body -->
+								    </div><!-- END .panel-collapse -->
+								  </div><!-- END .panel -->
+								</div><!-- END #accordionGRE -->
+
+
+							</li>
+						</ul>
+						<!-- ******* -->
+
+				      </div>
+				    </div>
+				  </div>
+				  
+				  <!-- SHOW ALL DATES-->
+				  <div class="panel panel-default"><!-- Courses by Date -->
+				    <div class="panel-heading">
+				      <h2 class="panel-title dateBar">
+				        <a class="accordion-toggle" data-toggle="collapse" data-target="#showAll" href="#" ng-click="collapsecal()">Show All Upcoming Classes <i class="glyphicon glyphicon-chevron-down"></i></a>
+				      </h2>
+				    </div>
+				    <div ng-hide="(classes | filter:m.current | filter:search | filter:findclass | classoptions:searchfilters | courseoptions:searchfilters).length" style="padding:15px;">No Classes Found</div>
+				    <div id="showAll" class="panel-collapse collapse courses {{ m.current }}">
+				      <div class="panel-body primary">
+				      <h3>{{ wait }}</h3>
+			            <ul id="ULfullCalendar" class="ang" style="list-style-type:none;padding:0;">
+			            	
+							<li ng-repeat="class in classes | filter: {current:'!past' } | filter:search | filter:findclass | classoptions:searchfilters | courseoptions:searchfilters | orderBy:'StartDate'" class="one" ng-class-even="'even'">
+							<!-- TODO: Fix This Filter -->
+					        	<div class="panel-group" id="accordionCourses">
+								  <div class="panel panel-default innerPanel"><!-- Global Course List -->
+								    <div class="panel-heading" id="GREtitle">
+								      <h2 class="panel-title">
+								        <a class="accordion-toggle" data-toggle="collapse" data-target="#a{{ class.Id }}{{ $index }}" href="#">
+								        {{ class.StartDate | date:'MMM dd' }} {{ class.City }} - {{ class.Title }}, {{ class.course.Title }}
+								        <i class="glyphicon glyphicon-chevron-down"></i></a>
+							<div class="rightIcons mini" style="margin-top:0;width:125px;text-align:left;">
+							    <div class="icon {{ class.ClassType | truncate:4 }}">{{ class.ClassType | truncate:1 }}
+							    	<div class="iconHover">Class Type: {{ class.ClassType }}</div>
+							    </div>
+							    <div class="icon {{ class.course.PrimaryDiscipline | truncate:4 }}">
+							    {{ class.course.PrimaryDiscipline| truncate:1 }}
+							    	<div class="iconHover">Primary Discipline: {{ class.course.PrimaryDiscipline }}</div>
+							    </div>
+							    <div ng-repeat="ad in class.course.AdditionalDisciplines.results">
+							    	<div class="icon {{ ad | truncate:4 }}">{{ ad | truncate:1 }}
+							    		<div class="iconHover">Additional Discipline: {{ ad }}</div>
+							    	</div>
+							    </div>
+							</div>
+
+								      </h2>
+								    </div>
+								    <div id="a{{ class.Id }}{{ $index }}" class="panel-collapse collapse">
+								      <div class="panel-body">
+								      <a href="#" class="btn btn-primary go-btn" ng-show="class.Link.Url">Register</a>
+								      <strong>Location: </strong>{{ class.City }} {{ class.Country }} {{ class.Region }}<br />
+								      <strong>Start Date: </strong>{{ class.StartDate | date:'fullDate' }}<br />
+								      <strong>End Date: </strong>{{ class.EndDate | date:'fullDate' }}<br />
+									  <br />
+								      <strong>Function: </strong>{{ class.course.CorpFunction }}<br />
+								      <strong>Discipline: </strong>{{ class.course.PrimaryDiscipline }}<br />
+								      <strong>Additional Disciplines:</strong>
+								      <div ng-repeat="ad in class.course.AdditionalDisciplines.results">{{ ad }}</div>
+								      <strong>Skill Level: </strong>{{ class.course.SkillLevel }}<br />
+								      <strong>Type: </strong>{{ class.ClassType }}<br />
+								      <strong>Vendor: </strong>{{ class.Vendor }}<br />
+								      
+								      
+								      <br />
+								      
+
+								      <p><strong>Class Details: </strong><span ng-bind-html="class.ClassDetails"></span></p>
+								      <p style="line-height:1.2;"><strong>Course Description: </strong><span ng-bind-html="class.course.CourseDescription"></span></p>
+								      </div><!-- END .panel-body -->
+								    </div><!-- END .panel-collapse -->
+								  </div><!-- END .panel -->
+								</div><!-- END #accordionGRE -->
+
+
+							</li>
+						</ul>
+						<!-- ******* -->
+							<a href="#" style="float:right;" onclick="updateListItem()">Update List Item</a>
+
+				      </div>
+				    </div>
+				  </div>
+				  <!-- END SHOW ALL DATES-->
+				  
+				</div><!-- end .panel-group -->
+		         </div><!-- end #fullCalendar -->
+
+		    </div><!-- end Training Calendar Tab Content -->
+
+      
+		</div><!-- end .tab-content (All Tabs) -->
+		<div id="breakpoint" style="display:none;">This page is in development. Your screen is {{ width }} pixels wide and {{ height }} high.</div>
+	</div><!-- /.container -->     
+ </div><!-- End #wrapper -->
+ 
+ <script type="text/javascript">
+ var opts = {
+  //lines: 13, // The number of lines to draw
+  length: 10, // The length of each line
+  //width: 10, // The line thickness
+  //radius: 30, // The radius of the inner circle
+  corners: 5, // Corner roundness (0..1)
+  //rotate: 0, // The rotation offset
+  //direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#fff', // #rgb or #rrggbb or array of colors
+  //speed: 1, // Rounds per second
+  //trail: 60, // Afterglow percentage
+  //shadow: false, // Whether to render a shadow
+  //hwaccel: false, // Whether to use hardware acceleration
+  //className: 'spinner', // The CSS class to assign to the spinner
+  //zIndex: 2e9, // The z-index (defaults to 2000000000)
+  //top: 'auto', // Top position relative to parent in px
+  //left: 'auto' // Left position relative to parent in px
+};
+var target = document.getElementById('spinner');
+var spinner = new Spinner(opts).spin(target);</script>
+</body>
+
+</html>

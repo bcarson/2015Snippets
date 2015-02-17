@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">UMVK2C7JZUWU-2-21</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">a9d908e9-36e4-48e1-8d36-83e3d055d5a2</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">http://bvlspadweb1/sites/TechnicalTraingDEV/_layouts/15/DocIdRedir.aspx?ID=UMVK2C7JZUWU-2-21, UMVK2C7JZUWU-2-21</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body id="catalog">
+<div xmlns:ng="http://angularjs.org" ng-app="app" resize>
+	<div ng-controller="ttdController" id="fluidDiv" class="container">
+		<div ng-include=" '../SiteAssets/Views/viewNav.html' "></div>
+ 		<div ng-include=" '../SiteAssets/Views/viewSearchOptions.html' "></div>
+		<div class="clearfix" style="height:1px;"></div>
+		
+		<ul class="nav nav-tabs nav-justified">
+			<li class="globalList active"><a href="#global" data-toggle="tab"><h4>Global Course List</h4></a></li>
+			<li class="calendar"><a href="#calendar" data-toggle="tab"><h4>Courses by Date</h4></a></li>
+		</ul>
+
+		<div id="content" class="tab-content" style="text-align:left;padding-top:0;">
+			<div class="tab-pane active" id="global">
+				<div ng-include=" '../SiteAssets/Views/viewUI.html' "></div>
+			</div><!-- end #global Tab -->
+			
+			<div class="tab-pane" id="calendar">
+				<div ng-include=" '../SiteAssets/Views/viewCalendar.html' "></div>  	
+			</div><!-- end Training Calendar Tab Content -->
+		</div><!-- end .tab-content (All Tabs) -->
+
+	</div><!-- /.container -->     
+ </div><!-- End #wrapper -->
+</body>
+
+</html>

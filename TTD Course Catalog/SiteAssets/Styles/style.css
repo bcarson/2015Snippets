@@ -1,0 +1,1570 @@
+﻿/* Testing, 1, 2, 3.... */
+/**************************************************************************************************************/
+/********** Global Styles for ConocoPhillips Technical Training and Development SharePoint 2013 Site **********/
+/**************************************************************************************************************/
+
+/********************** THIS SECTION FOR DEVELOPMENT ONLY ****************************/
+
+#wrapper { 
+	padding-bottom:20px; 
+	}
+
+#pageTitle { 
+	display:none; 
+	}
+
+#DeltaSiteLogo, #sideNavBox {
+	display:none;
+	}
+
+
+#s4-titlerow {
+	display:none !important;
+	height:0;
+	padding:0;
+	margin:0;
+	}
+
+#pullOut {
+	position:absolute;
+	left:0;
+	top:0;
+	height:500px;
+	width:50px;
+	}
+
+body#catalog nav#mega {
+	display:block !important;
+}
+
+body#catalog .banner-div {
+	display:block !important;
+}
+
+#contentBox {
+	width:100%;
+	margin:0 auto;
+}
+
+/********************************************************************************/
+/********** Body, Header, Navigation Bar and Global Styles (All Pages) **********/
+/********************************************************************************/
+
+
+
+#content {
+	padding:40px 15px;
+	text-align:center;
+	}
+
+* { /* Remove Bootstrap Rounded Corners */
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+	}
+ 
+
+body {
+	font-family:Calibri,Arial,Helvetica,sans-serif;
+}
+
+
+/************************************************************************/
+/********************** Calendar Page Search Feature ********************/
+/************************************************************************/
+
+.search {
+	font-size:0.7em;
+	}
+
+#navSearch {
+	height:30px;
+	margin-top:10px;
+	}
+
+#navSearch p {
+	font-size:1em;
+	text-align:center;
+	padding-top:2px;
+	}
+
+.glyphicon {
+	zoom:0.5;
+	padding-left:8px;
+	vertical-align:text-top;
+	padding-top:0.5em;
+
+	}
+.caret {
+	margin-left:3px;
+	}
+
+.container .jumbotron {
+	margin-bottom:-20px;
+	padding:10px 0 0;
+	}
+	
+.jumbotron p {
+	width:auto;
+	min-width:30%;
+	float:left;
+	font-size:16px;
+	line-height:1.9em;
+	padding-left:15px;
+}
+
+.jumbotron input.search {
+	width:50%;
+	float:left;
+	margin-top:0;
+	height:30px;
+	}
+
+.jumbotron input[placeholder] {	
+	margin-left:15px;
+	font-size:0.6em !important;
+	font-style:italic !important;
+	}
+
+#searchMain {
+	margin-top:-50px;
+	margin-right:20px;
+	height:20px;
+	margin-bottom:-20px !important;
+}
+
+.searchGroup {
+	float:left;	
+
+	width:17.5%;
+	margin-right:0.5%;
+	}
+
+
+
+.search-options .accordion-heading {
+	margin-top:0;
+	margin-bottom:0;
+	font-size:1em;
+	padding-left:15px;
+	}
+	
+.search-options .accordion-inner .accordion-heading {
+	font-size:14px;
+	text-align:left;
+}
+
+.searchGroup #collapseOne,
+.searchGroup #collapseTwo,
+.searchGroup #collapseThree,
+.searchGroup #collapseFour,
+.searchGroup #collapseFive {
+	position:absolute;
+	z-index:10;
+	background-color:#eee;
+	border:1px solid #ccc;
+	padding:10px 10px 0 10px;
+	top:40px;
+	left:15px;
+	width:200px;
+	font-size:0.6em;
+	line-height:1em;
+	min-height:55px;
+
+}
+
+
+.checkboxFooter {
+	line-height:2em;
+	font-weight:bold;
+}
+
+.search-options .accordion-inner input[type='checkbox'] {
+	margin-bottom:8px;
+}
+
+.accordion-heading.expand, .accordion-heading.collapse  {
+	width:13.5%;
+	text-align:left;
+	float:right;
+	margin-top:-30px;
+	padding-left:4.5%;
+}
+
+.collapse {
+	display:none;
+}
+	
+.search-options .col-md-2 {
+	width:200px;
+	margin-right:5px;
+	margin-bottom:-29px;
+}	
+
+.navbar-collapse {
+	padding:0;
+	}
+
+.navbar-default {
+	background-color:#fff;
+	border:none;
+	}
+
+.navbar-default .navbar-brand {
+	color:#ED1B24;
+	font-size:2em;
+	}
+
+
+/************************************************************************/
+/******************************** Home Page *****************************/
+/************************************************************************/
+
+#home h2 {
+	font-size:1.5em;
+	color:#ED1B24;
+	line-height:1em;
+	margin-bottom:0;
+	}
+
+.uppercase {
+	
+	}
+
+#content {
+	padding:20px 0;
+	}
+
+
+/************************* Slideshow *************************/
+#slideshow {
+	margin-left:-25px;
+	float:left;
+	width:65.3%;
+}
+
+.carousel {
+	border-bottom:1px solid #ebebeb;
+	height:418px;
+	overflow:hidden;
+	}
+
+.carousel-inner > .item > a > img {
+	margin:0 auto;	
+	zoom:1;
+	width:100%;
+	height:418px;
+	}
+
+.carousel-caption {
+	font-size:1.4em;
+	background-color:#000;
+	color:#fff;
+	text-shadow:none;
+	position:relative;
+	top:-70px;
+	margin-top:38px;
+	left:0;
+	text-align:left;
+	padding:3px 100px 10px 15px;
+	filter: alpha(opacity=60);
+	opacity:0.6;
+	}
+	
+.carousel-description {
+	display:none;
+	font-size:1.4em;
+	background-color:#000;
+	color:#fff;
+	text-shadow:none;
+	position:relative;
+	top:-70px;
+	height:70px;
+	left:0;
+	text-align:left;
+	padding:5px 0 10px 15px;
+	filter: alpha(opacity=60);
+	opacity:0.6;
+	}	
+
+.carousel-control {
+	font-size:36px;
+	padding-top:200px;
+	width:10%;
+}
+
+.carousel-indicators {
+	top:96%;
+	left:120%;
+	width:auto;
+	text-align:right;
+	float:right;
+	}
+
+.carousel-indicators li {
+	border-radius:10px !important;
+	}
+	
+/************************* Mini Calendar *************************/
+
+#miniCalendar {
+  width:35.5%;
+	}
+	
+#miniCalendar h2 {
+	margin-top:0;
+	color:#870006;
+}	
+
+#innerCalendar {
+	background-color:#ebebeb;
+	height:400px;
+	overflow:hidden;
+	padding:5px;
+}
+
+#innerCalendar ul {
+	padding:0;
+	margin:0 0 8px 0;
+	font-size:1.3em;
+	}
+
+#miniCalendar li.one {
+	display: block;
+	padding: 10px;
+	list-style-type: none;
+	list-style-image: none;
+	height:70px;
+	margin-bottom:9px; 
+	background-color:#fff;
+	}
+
+#miniCalendar li.one .date {
+	width: 50px;
+	height: 50px;
+	float: left;
+	background-color: #005CB8;
+	color: #fff;
+	text-align: center;
+	margin-right: 10px;
+	font-family: Arial;
+	text-transform: uppercase;
+	padding:10px 5px 5px;
+	}
+
+#miniCalendar li.one .date .month {
+	line-height: 0.5em;
+	font-size:1em;
+	}
+
+#miniCalendar li.one .date .day {
+	line-height: 1em;
+	font-size: 1.7em;
+	padding-top: 5px; 
+	}
+
+#miniCalendar li.one .details {
+	margin-left: 5px;
+	line-height: 1.3em;
+	color: #a4a4a4; 
+	width:80%;
+	float:left;
+	}
+
+#miniCalendar li.one .details a {
+	text-decoration: none; 
+	}
+
+#miniCalendar li.one .details a:hover {
+	text-decoration: underline; 
+	}
+	
+#miniCalendar li.one .details span.title {
+	word-wrap:normal;
+	width:80%;
+	height:20px;
+	overflow:hidden;
+	display:block;
+	white-space:nowrap;
+}	
+	
+#miniCalendar li.one .details .title .fullTitle	{
+	display:none;
+}
+	
+#miniCalendar li.one .details span.title a {
+	color: #555;
+	text-decoration: none;
+	line-height:1.3em;
+	}
+
+#miniCalendar li.one .details span.title a:hover {
+	color: #000; 
+	}
+	
+#miniCalendar li.one .details .rightIcons.mini {
+	float: right;
+	margin-right: -5px;
+	margin-top: -40px;
+	line-height: 0.4em; 
+	height:50px;
+	}
+
+#miniCalendar li.one .details .rightIcons.mini div.icon {
+	float: none;
+	height: 18px;
+	width: 18px;
+	margin: 5px;
+	line-height: 0.9em; 
+	color:#fff;
+	text-align:center;
+	padding-top:1px;
+	font-weight:bold;
+	}
+
+#miniCalendar li.even .date {
+	background-color: #005CB8; 
+	}
+    
+.F {
+	background-color:#D38035;
+	}
+
+.H {
+	background-color:#133277;
+	}
+	
+#miniCalendar li#search input[placeholder] {
+	margin-top:0;
+	font-size:0.9em;
+	filter:alpha(opacity=70);
+	margin-left:0;
+	padding-left:10px !important;
+	}
+	
+	
+#miniCalendar li#search input.form-control {
+	width:100%;
+	height:25px;
+	float:left;
+}	
+
+#miniCalendar li.one.viewMore a {
+	float:right;
+	padding:10px;
+	font-size:1.5em;
+	color:#870006 !important;
+}
+
+#miniCalendar li#search {
+	height:45px;
+	display:block;
+	padding-top:10px;
+	margin-top:0;
+
+}
+
+h2#innerH2 {
+	clear:both;
+	font-size:1.1em;
+	line-height:1em;
+	margin:15px 0 5px;
+	color:#870006;
+}
+
+/************************* Footer Row *************************/
+
+
+.innerSuccess {
+	background-color:#ebebeb;
+	height:200px;
+}
+
+/********* Success Stories **********/
+
+.story {
+	padding:0;
+	height:150px;
+	overflow:hidden;
+	background-color:#ebebeb;
+	}
+
+.story a span.storyImg {
+	max-width:115px;
+	display:block;
+	float:left;
+	overflow:hidden;
+	margin-right:5px;	
+	}
+
+.story a span.Adrian img {
+	width:130px;
+	margin-left:-20px;
+	}
+
+.story img {
+	height:150px;
+	}
+
+.story a p {
+	color:#555;
+	font-size:1.1em;
+	line-height:1.5em;
+	}
+
+.story span.storyTitle {
+	width:100%;
+	display:block;
+	position:relative;
+	margin-top:-14px;
+	clear:both;
+	font-size:1.4em;
+	background-color:#000;
+	color:#fff;
+	top:-22px;
+	left:0;
+	text-align:left;
+	padding:3px 0 3px 5px;
+	filter: alpha(opacity=60);
+	opacity:0.6;
+	}
+
+.story:hover a p, .story a:hover {
+	text-decoration:none !important;
+	color:#000;
+	}
+
+
+/***** Need Help? Last section of footer row on home page *****/
+#browseBox {
+	white-space:nowrap;
+	overflow:visible;
+}
+
+.browseLeft {
+	background-color:#870006;
+	float:left;
+	width:77.1%;
+	height:100%;
+	padding:13px 0;
+}
+
+a.browse {
+	color:#fff;
+	font-size:2em;
+	display:block;
+	white-space:normal;
+
+}
+
+.footBoxes a {
+	opacity:0.9;	
+}
+
+.footBoxes a:hover {
+	opacity:1;
+}
+
+a.browse p {
+	line-height:1.3em;	
+}
+
+a.browse .glyphicon {
+	float:left;
+	font-size:2em;
+	zoom:1.3;
+	padding-right:10px;
+	padding-bottom:30px;
+}
+
+.browseRight {
+	width: 0;
+	height: 0;
+	border-top: 75px solid transparent;
+	border-left: 50px solid #870006;
+	border-bottom: 75px solid transparent;
+	display:block;
+	float:left;
+	position:relative;
+	left:0px;
+	}
+
+.nugget img {
+	height:125px;
+	position:relative;
+	z-index:5;
+	padding:0 0 10px 25px;
+}
+
+.footer.row {
+	padding-top:5px;
+	margin-left:0;
+	margin-right:0;
+}
+
+.footBoxes {
+	width:19.2%;
+	float:left;
+	height:170px;
+	margin-right:1%;
+	overflow:hidden;
+}
+
+
+.footBoxes.right {
+	margin-right:0;
+}
+
+.footBoxes .title {
+	width:100%;
+	display:block;
+	position:relative;
+	margin-top:0px;
+	clear:both;
+	font-size:1.4em;
+	background-color:#000;
+	color:#fff;
+	top:148px;
+	left:0;
+	text-align:left;
+	padding:3px 0 3px 5px;
+	filter: alpha(opacity=60);
+	opacity:0.6;
+	z-index:1;
+}
+
+/************************** END Home Page Specific Styles ***************************/
+
+
+/************************************************************************************/
+/******************************** Global Navigation Bar *****************************/
+/************************************************************************************/
+
+nav {
+    width:100%;
+    font-size:1.3em;
+    font-family:Arial;
+    margin: 0 auto;
+    background-color:#ccc;
+
+	}
+
+nav ul.main {
+    text-align:center;
+    margin:0;
+    padding:0;
+	}
+
+nav#mega ul.main li {
+    background-color:#ccc;
+    border:1px solid #ccc;
+    border-bottom:none;
+    float:left;
+    list-style-type:none;
+    text-align:center;
+    padding:10px 2.9%;
+	position:relative;
+	max-height:38px;
+	font-weight:bold;
+	}	
+	
+nav#mega ul.main li a {
+	color:#000;
+}	
+
+nav ul.main li {
+    text-decoration:none;
+    font-weight:bold;
+    color:#000;
+	}
+
+nav ul.main li div.subNav {
+    display:none;
+    position:fixed;
+    min-height:350px;
+    background-color:#fff;
+    text-align:left;
+    padding:10px 0 0 25px;
+    border:1px solid #ebebeb;
+    border-top:1px solid #fff;
+    z-index:99999;
+    width:101%;
+	}
+    
+nav#mega ul.main li:hover {
+    background-color:#fff;
+    border:1px solid #ebebeb;
+    border-bottom:none;
+    position:relative;
+    z-index:99999;
+    }    
+    
+nav#mega ul.main li ul#subNavLi {
+	background-color:#fff;
+}    
+nav#mega ul.main li ul#subNavLi li.off {
+	background-color:#fff;
+	border:none;
+	float:none;
+	text-align:left;
+	padding:1px;
+	padding-left:0;
+	margin-left:-30px;
+}
+
+nav#mega ul.main li ul#subNavLi.panelLinks {
+	float:left;
+	width:30%;
+}
+
+nav#mega ul.main li ul#subNavLi.panelLinks li.off {
+	float:none;
+	padding:0;
+}
+
+nav#mega ul.main li ul#subNavLi.panelLinks li.off a {
+	display:block;
+	width:100%;
+	padding:1px;
+}
+
+#panels {
+	float:right;
+	width:70%;
+	margin:0;
+}
+
+.panel {
+	display:none;
+	background-color:#ebebeb;
+	width:100%;
+	padding:10px;
+}
+
+.subNavOne {
+    display:block;
+    background-color:#fff;
+    width:50%;
+    min-height:120px;
+    float:left;
+    padding:0 25px 20px 10px;;
+    line-height:1.5em;
+    margin-top:0;
+    margin-bottom:10px;
+	}
+
+.subNavOne.accordionLinks .accordion-inner {
+	padding-left:10px;
+	font-size:0.8em;
+}
+
+.long {
+	height:210px;
+	}
+
+.subNavOne.right {
+    border-left:1px solid #ccc;
+	}
+
+.subNav h2 {
+    font-size:16px;
+    font-family:arial;
+    padding-left:10px;
+    margin-left:-10px;
+    margin-top:20px;
+	}
+
+.subNav h3 {
+    font-weight:bold;
+    font-size:14px;
+    background-color:#92A9AC;
+    color:#fff;
+    padding: 5px 0 5px 10px;
+    margin-left:-10px;
+    margin-top:0;
+	}
+
+.subNavOne.right h3 {
+    background-color:#92A9AC;
+	}
+
+.subNav a {
+    text-decoration:none;
+    font-weight:normal;
+    color:blue;
+	}
+
+.subNav a:hover {
+    text-decoration:underline;
+	}
+	
+table {
+	font-size:11px;line-height:1.5em;
+	}
+	
+th {
+	text-align:left;
+	border-bottom:1px solid #ababab;
+	}
+	
+td {
+	width:95px;
+	padding-left:5px;
+	}
+
+.shadow {
+	height:100%;
+	width:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:1 !important;
+	background-color:black;
+	/*
+	filter: alpha(opacity=50); 
+	-khtml-opacity: 0.50;      
+	-moz-opacity: 0.50;      
+	opacity: 0.50;   */
+	}
+
+.banner-div img {
+	height:auto;
+	width:5%;
+	background-repeat:no-repeat;
+	float:left;
+	}
+.banner-div {
+	background-color:#870006;
+	min-height:50px;
+	width:100%;
+	font-size:28px;
+	font-weight:bold;
+	color:#fff;
+	line-height:1.94em;
+}
+
+/* ***** For Global Catalog ***** */
+
+#catalog #home, #catalog #discipline {
+
+	font-size:1.2em;
+}
+
+#catalog #content h1 {
+	font-size:1.5em;
+	color:#333;
+	margin-top:0;
+}
+
+#catalog #content h2 {
+	font-size:1.3em;
+	color:#444;
+}
+
+#catalog #content p {
+	color:#555;
+}
+
+img.ryan {
+	float:left;
+	margin-right:20px;
+	max-height:200px;
+}
+
+.discipline {
+	padding-bottom:20px;
+	float:left;
+	height:130px;
+}
+
+.discipline a.show {
+	display:block;
+	height:100px;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.discipline a.show:hover {
+	text-decoration:none;
+	background-color:#fff;
+}
+
+.discipline a.show:visited {
+	color:#888;
+}
+
+.discipline p {
+	width:95%;
+}
+
+.discipline .glyphicon {
+	float:right;
+	position:relative;
+	top:-80px;
+	zoom:3;
+}
+
+
+
+img.discimg {
+	float:left;
+	height:100px;
+	margin-right:20px;
+}
+
+.selectDiscipline {
+	border:1px solid #ccc;
+	border-top:none;
+	height:665px;
+	width:1140px;
+	display:none;
+	background-color:#F5F5F5;
+	position:relative;
+	z-index:9;
+	padding:20px;
+	margin:-2px -25px;
+
+}
+
+.browseDiscipline {
+	border:1px solid #ccc;
+	min-height:665px;
+	display:none;
+	background-color:#F5F5F5;
+	position:relative;
+	z-index:9;
+	padding:20px;
+	margin:-2px -21px;
+
+}
+
+
+#GRE .selectDiscipline {
+	top:-176px;
+}
+
+#GRE .browseDiscipline {
+	top:-341px;
+}
+
+#GW .selectDiscipline {
+	top:-310px;
+}
+#GP .selectDiscipline {
+	top:-440px;
+}
+#LD .selectDiscipline {
+	top:-570px;
+}
+
+.back {
+	cursor:pointer;
+}
+
+.back .glyphicon {
+	zoom:1;
+	float:none;
+	top:0;
+}
+
+a.back:hover {
+	text-decoration:none;
+}
+
+.disc-detail-ul {
+	list-style-type:none;
+	line-height:2em;
+}
+
+.disc-detail-right {
+	float:right;
+	width:100px;
+}
+
+.disc-detail-right img.discimg {
+	margin-bottom:20px;
+	height:75px;
+}
+
+.disc-btn {
+	font-size:1.5em;
+	margin:20px auto 0;
+	display:block;
+}
+
+.nav-tabs .active a h4 {
+	color:#333;
+}
+
+.nav-tabs a h4 {
+	font-size:16px;
+	margin:0;
+	}
+
+.nav-tabs {
+	margin-top:40px;
+}
+
+.nav-tabs li.active a, .nav-justified.nav-tabs .active a {
+	background-color:#F5F5F5;
+	border-bottom-color:#F5F5F5;
+	border-bottom-width:1px;
+
+}
+
+.well {
+	box-shadow:none;
+	border-top-color:#F5F5F5;
+}
+
+/* ***** For Full Page Calendar ***** */
+.hide {
+  display: none; }
+
+#country.show {
+  display: block; }
+
+div#fullPage {
+  width: 800px;
+  margin: 10px auto;
+  font-family: arial, sans-serif;
+  font-size: 10pt; }
+
+div#searchBox {
+  background-color: #ebebeb;
+  border: 2px solid #d1cfd0;
+  margin-bottom: 5px;
+  padding: 2px 10px;
+  color: #555;
+  font-style: italic;
+  display: block; }
+
+div#searchBox > div {
+  display: none; }
+
+div#calendarSidebar {
+  width: 235px;
+  float: left;
+  margin-right: 10px; }
+  div#calendarSidebar h1 {
+    margin: 10px 0 5px 0;
+    font-size: 20px; }
+  div#calendarSidebar h2 {
+    padding: 10px 0 0 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px; }
+  div#calendarSidebar h1, div#calendarSidebar h2 {
+    color: #870006; }
+  div#calendarSidebar h3 {
+    font-size: 14px;
+    color: #555;
+    padding: 10px 0 5px 10px;
+    margin: 0; }
+
+.subSearch {
+  clear: both;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  padding-bottom: 10px;
+  min-height: 50px;
+  background-color: #ebebeb;
+  border: 2px solid #d1cfd0; }
+
+.row, .row .row, .row .row .row {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  clear: both; }
+
+.checkBox {
+  border: 1px solid #d1cfd0;
+  width: 15px;
+  height: 15px;
+  float: left; }
+
+.icon {
+  height: 20px;
+  width: 20px;
+  float: left;
+  border:1px solid #888;
+  margin: 1px 5px 0 5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  background-color: #D38035;
+  padding-top: 0;
+  overflow:visible; }
+
+.icon a {
+	color:#fff;
+}
+
+.icon.checkbox {
+	height:15px;
+	width:15px;
+	float:left;
+	min-height:15px;
+	padding-left:0;
+	font-weight:normal;
+	font-size:0.9em;
+	padding-top:1px;
+	line-height:1em;
+
+}
+
+.checkboxes {
+	font-size:0.9em;
+	clear:both;
+	line-height:1.5em;
+}
+
+.Geos {
+	background-color:#e5eaf0;
+	color:#888 !important; } 
+
+.Rese {
+  background-color: #ccdbe1;
+	color:#777 !important;  }
+
+.Prod {
+  background-color: #b2c2d2;  }
+
+.Dril {
+  background-color: #99aec4; }
+  
+.Unco { 
+	background-color:#809ab5;}
+	
+.Comp {
+  background-color: #6686a6; }
+
+.New  {
+	background-color:#4d7298; }
+
+.Faci {
+	background-color:#335e89; }
+
+.Deep {
+	background-color:#1a4a7a; }
+
+.Indi {
+	background-color:#01366c; }
+
+.Exte {
+  background-color: #80D3A7; }
+
+.InHo {
+  background-color: #50a87a; }
+
+.Inte {
+  background-color: #1A6D41; }
+
+/*.lead {
+  background-color: #3f1178; }*/
+
+.pros {
+  background-color: #7843bc; }
+
+.unknown {
+  background-color: yellow; }
+  
+.Awar, .awar {
+	background-color:#FEE09C;
+}
+
+.Basi, .basi {
+	background-color:#FED679;
+}
+
+.Prof, .prof {
+	background-color:#FCC74C;
+}
+
+.Expe, .expe {
+	background-color:#A47A19;
+	color:#fff;
+}
+
+.disc {
+	background-color:#01366c;
+	color:#fff !important;
+	}
+
+
+.level {
+	color:#fff !important;
+	border:1px solid #ccc;
+	background-color:#A47A19;
+}
+
+.type {
+	background-color: #1A6D41;
+	color:#fff;
+}
+
+.filter {
+  color: #555;
+  margin-top: 5px;
+  font-size: 14px; }
+
+.location {
+  height: auto; }
+
+.location .icon {
+  display: none; }
+
+.R {     
+  background-color: #aaa; }
+
+.rightIcons {
+  float: right;
+  margin-right: 20px;
+  vertical-align: middle;
+  margin-top: -27px; }
+  .rightIcons .type {
+    background-color: #8AA3DB;
+    display: none; }
+
+.panel-group .panel {
+	overflow:visible;
+}
+
+.iconHover {
+	display:none;
+	color:#555;
+	position:relative;
+	height:30px;
+	min-width:280px;
+	font-size:0.9em;
+	background-color:#fff;
+	border:1px solid #ccc;
+	padding:5px 0;
+	z-index:5;
+	border-collapse: separate; 
+	box-shadow: 1px 1px 2px #ccc;
+	-webkit-box-shadow: 1px 1px 2px #ccc; 
+	-moz-box-shadow: 1px 1px 2px #ccc; 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=145, Strength=2);}
+
+.icon:hover .iconHover {
+	display:inline-block;
+}
+
+#miniCalendar .iconHover {
+	left:-280px;
+	top:-20px;
+	height:25px;
+}
+
+select {
+  width: 200px;
+  margin-bottom: 10px; }
+
+#ULfullCalendar {
+	list-style-type:none;padding:0;
+}
+
+#fullCalendar {
+	font-size:14px;
+}
+
+.disc-btn, .dsc-btn:visited {
+	width:50%;
+	color:#fff !important;
+}
+
+.go-btn {
+	float:right;
+}
+
+#calendar .go-btn {
+	margin-right:62px;
+}
+
+.dateBar {
+	background-color:#005CB8;
+	color:#fff !important;
+	padding:10px 0 10px 15px;
+}
+
+h2.dateBar.searchResults {
+	 margin-bottom:5px;
+	 margin-top:0;
+	 display:none;
+	 background-color:#870006;
+	 color:#fff !important;
+	 min-height:45px;
+	 
+}
+
+span.searchResults {
+	margin:-3px 5px 0;
+	padding:5px;
+	display:block;
+	float:left;
+	width:auto;
+	position:relative;
+	font-size:0.9em;
+}
+
+h2.dateBar a.clear {
+	float:right;
+	color:#fff !important;
+	display:block;
+}
+
+#GREtitle {
+	background-color:#ebebeb;
+	color:#01366c !important;
+	padding:10px;
+	font-size:0.8em;
+}
+
+#GREtitle:hover {
+	background-color:#ccc;
+}
+
+#GREtitle a:hover {
+	text-decoration:none;
+	color:#000;
+	background-color:#ccc;
+}
+
+#accordionGRE .panel-body {
+	padding-left:15px;
+	font-size:1.3em;
+	border:1px solid #ebebeb;
+}
+
+.panel-heading {
+	padding:0px;
+}
+
+.panel-heading > .panel-heading {
+	padding:15px;
+}
+
+.panel-body {
+	padding:15px;
+}
+
+.panel-body.primary {
+	padding:0;
+}
+
+.panel-body.primary h3 {
+	margin-top:0;
+}
+
+.innerPanel {
+	margin:5px;
+}
+
+/* ***** Angular Animations ***** */
+.animate-enter,
+.animate-leave {
+  -webkit-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 400ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  position: relative;
+  display: block; }
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+  opacity: 1;
+  top: 0;
+  height: 30px; }
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+  opacity: 0;
+  top: -50px;
+  height: 0px; }
+  
+  
+/************************************************************************************/
+/******************************** Engineering Academy *******************************/
+/************************************************************************************/
+
+  
+#static.container	{ 
+	font-family:Arial; 
+	font-size:1.5em;
+	color:#555; 
+	line-height:1.4em; 
+	padding:20px 15px 50px; 
+	}
+	
+.masthead  { 
+	max-height:150px; 
+	display:block; 
+	margin:10px auto; 
+	float:right;
+	}
+	
+#static	h1 { 
+	font-size:16px !important; 
+	color:#EC2027; 
+	margin:50px 0 0 15px; 
+	width: 370px; 
+	float:right; 
+	}
+	
+#static	.clear { 
+	clear:both; 
+	}
+	
+#static .datesTable {
+	width:51%;
+	float:left;
+	font-size:0.9em;
+}	
+
+#static .datesTable h2 {
+	margin-top:0;
+	font-size:1.6em;
+}
+	
+#static	.left { 
+	display:block; 
+	width:44%; 
+	text-align:right; 
+	padding-right:10px; 
+	float:left; 
+	font-weight:bold; 
+	} 
+	
+#static	.right { 
+	width:50%; 
+	text-align:left; 
+	clear:right; 
+	}
+	
+#static	#highlight { 
+	background-color:#EBEBEB; 
+	width:100%; 
+	padding:20px 50px; 
+	color:#555; 
+	margin:30px 0; 
+	border-collapse: separate; 
+	box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc; 
+	-moz-box-shadow: 5px 5px 5px #ccc; 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=145, Strength=3); 
+	} 
+	
+	
+#static #hightlight	h2 { 
+	font-size:1.2em; 
+	text-align:center; 
+	text-decoration:underline; 
+	}
+
+	
+#static	#sidebar { 
+	float:left;
+	background-color:#EBEBEB; 
+	width:25%; 
+	padding:20px; 
+	color:#555; 
+	margin:0 5% 0 0;
+	min-height:500px; 
+	border-collapse: separate; 
+	box-shadow: 5px 5px 5px #ccc;
+	-webkit-box-shadow: 5px 5px 5px #ccc; 
+	-moz-box-shadow: 5px 5px 5px #ccc; 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=145, Strength=3); 
+	}	
+
+#static #rightContent {
+	float:left;
+	width:70%;
+}	
+	
+#static a { 
+	color:#01366C !important; 
+	text-decoration:none !important; 
+	font-weight:bold; 
+	}
+	
+#static a:hover { 
+	color:blue !important; 
+	text-decoration:underline !important; 
+	}
+	
+#static	.chart { 
+	margin: 0 auto; 
+	width:610px; 
+	display:block; 
+	border:1px solid #fff; 
+	}
+	
+#static	a:hover .chart { 
+	border:1px solid blue; 
+	}
+
+
+/* Angular Accordion Styles */
+
+h2.discTitles {
+	background-color:#005CB8;
+	color:#fff !important;
+	padding:10px 0 10px 15px;
+	margin:5px 0;
+	font-size:1.5em;
+	cursor:pointer;
+}
+
+h3.courseTitles {
+	font-size:1.3em;
+	border:1px solid #ccc;
+	background-color:#ebebeb;
+	padding:10px 10px 10px 20px;
+	margin:5px 0 0;
+	cursor:pointer;
+}
+
+.courseBody {
+	margin:0;
+	border: solid 1px #ccc;
+	border-top:none;
+	padding:20px;
+	font-size:1.3em;
+}
+
+.nav, .pagination, .carousel, panel-title a {
+	cursor:pointer;
+}
+
+#keepopen {
+	display:block !important;
+}
+
+/* Date Picker */
+
+.ui-datepicker-prev {
+	float:left;
+}
+
+.ui-datepicker-next {
+	float:right;
+}
+
+.ui-datepicker-title {
+	text-align:center;
+}
+
+.ui-datepicker {
+	width:190px;
+	background-color:#eee;
+	padding:10px;
+	border:1px solid #ccc;
+	border-top:none;
+}
+
+#suiteBar, #RibbonContainer {
+	display:none;
+}
